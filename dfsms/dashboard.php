@@ -17,6 +17,7 @@ if (strlen($_SESSION['aid']==0)) {
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link href="dist/css/stylenew.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -45,21 +46,24 @@ $listedcat=mysqli_num_rows($query);
 ?>
 
 <div class="col-lg-3 col-md-6">
-<div class="card card-sm">
-<div class="card-body">
-<div class="d-flex justify-content-between mb-5">
-<div>
-<span class="d-block font-15 text-dark font-weight-500">Categories</span>
-</div>
-<div>
-</div>
-</div>
-<div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php echo $listedcat;?></span>
-<small class="d-block">Listed Categories</small>
-</div>
-</div>
-</div>
+    <div class="card card-sm small-box bg-primary">
+        <div class="card-body">
+            <div class="d-flex justify-content-between mb-5">
+                <div>
+                    <h3><span class="d-block font-19 text-white font-weight-700">Categories</span></h3>
+                </div>
+                <div>
+                </div>
+            </div>
+            <div class="text-center">
+                <h3><span class="d-block display-3 text-white mb-5"><?php echo $listedcat;?></span></h3>
+                <small class="d-block text-white">Listed Categories</small>
+            </div>
+        </div>
+        <div class="small-box-footer">
+
+        </div>
+    </div>
 </div>
 							
 
@@ -68,19 +72,19 @@ $ret=mysqli_query($con,"select id from tblcompany");
 $listedcomp=mysqli_num_rows($ret);
 ?>
 <div class="col-lg-3 col-md-6">
-<div class="card card-sm">
+<div class="card card-sm small-box bg-success">
 <div class="card-body">
 <div class="d-flex justify-content-between mb-5">
 <div>
-<span class="d-block font-15 text-dark font-weight-500">Companies</span>
+<span class="d-block font-19 text-white font-weight-700">Stations</span>
 </div>
 <div>
 </div>
 </div>
 
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><span class="counter-anim"><?php echo $listedcomp;?></span></span>
-<small class="d-block">Listed Companies</small>
+<span class="d-block display-3 text-white mb-5"><span class="counter-anim"><?php echo $listedcomp;?></span></span>
+<small class="d-block text-white">Listed Stations</small>
 </div>
 </div>
 </div>
@@ -91,18 +95,18 @@ $sql=mysqli_query($con,"select id from tblproducts");
 $listedproduct=mysqli_num_rows($sql);
 ?>
 <div class="col-lg-3 col-md-6">
-<div class="card card-sm">
+<div class="card card-sm small-box bg-warning">
 <div class="card-body">
 <div class="d-flex justify-content-between mb-5">
 <div>
-<span class="d-block font-15 text-dark font-weight-500">Products</span>
+<span class="d-block font-19 text-dark font-weight-700">Customers</span>
 </div>
 <div>
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php echo $listedproduct;?></span>
-<small class="d-block">Listed Products</small>
+<span class="d-block display-3 text-dark mb-5"><?php echo $listedproduct;?></span>
+<small class="d-block text-dark">Listed Customers</small>
 </div>
 </div>
 </div>
@@ -112,18 +116,18 @@ $query=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice
 $row=mysqli_fetch_array($query);
 ?>
 <div class="col-lg-3 col-md-6">
-<div class="card card-sm">
+<div class="card card-sm small-box bg-danger">
 <div class="card-body">
 <div class="d-flex justify-content-between mb-5">
 <div>
-<span class="d-block font-15 text-dark font-weight-500">Total Sales</span>
+<span class="d-block font-19 text-white font-weight-700">Total Litres</span>
 </div>
 <div>
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php echo number_format($row['tt'],2);?></span>
-<small class="d-block">Total sales till date</small>
+<span class="d-block display-3 text-white mb-5"><?php echo number_format($row['tt'],2);?></span>
+<small class="d-block text-white">Total litres till date</small>
 </div>
 </div>
 </div>
@@ -134,18 +138,18 @@ $qury=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice)
 $row=mysqli_fetch_array($qury);
 ?>
 <div class="col-lg-3 col-md-6">
-<div class="card card-sm">
+<div class="card card-sm small-box bg-dark">
 <div class="card-body">
 <div class="d-flex justify-content-between mb-5">
 <div>
-<span class="d-block font-15 text-dark font-weight-500">Last 7 Days Sales</span>
+<span class="d-block font-19 text-white font-weight-700">Last 7 Days Sales</span>
 </div>
 <div>
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php echo number_format($row['tt'],2);?></span>
-<small class="d-block">Last 7 Days Total Sales</small>
+<span class="d-block display-3 text-white mb-5"><?php echo number_format($row['tt'],2);?></span>
+<small class="d-block text-white ">Last 7 Days Total Sales</small>
 </div>
 </div>
 </div>
@@ -156,18 +160,18 @@ $qurys=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice
 $rw=mysqli_fetch_array($qurys);
 ?>
 <div class="col-lg-3 col-md-6">
-<div class="card card-sm">
+<div class="card card-sm small-box bg-info">
 <div class="card-body">
 <div class="d-flex justify-content-between mb-5">
 <div>
-<span class="d-block font-15 text-dark font-weight-500">Yesterday Sales</span>
+<span class="d-block font-19 text-dark font-weight-700">Yesterday Sales</span>
 </div>
 <div>
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php echo number_format($rw['tt'],2);?></span>
-<small class="d-block">Yesterday Total Sales</small>
+<span class="d-block display-3 text-dark mb-5"><?php echo number_format($rw['tt'],2);?></span>
+<small class="d-block text-dark">Yesterday Total Sales</small>
 </div>
 </div>
 </div>
@@ -178,18 +182,18 @@ $quryss=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPric
 $rws=mysqli_fetch_array($quryss);
 ?>
 <div class="col-lg-3 col-md-6">
-<div class="card card-sm">
+<div class="card card-sm small-box">
 <div class="card-body">
 <div class="d-flex justify-content-between mb-5">
 <div>
-<span class="d-block font-15 text-dark font-weight-500">Today's Sales</span>
+<span class="d-block font-19 text-dark font-weight-700">Today's Sales</span>
 </div>
 <div>
 </div>
 </div>
 <div class="text-center">
-<span class="d-block display-4 text-dark mb-5"><?php echo number_format($rws['tt'],2);?></span>
-<small class="d-block">Today's Total Sales</small>
+<span class="d-block display-3 text-dark mb-5"><?php echo number_format($rws['tt'],2);?></span>
+<small class="d-block text-dark">Today's Total Sales</small>
 </div>
 </div>
 </div>

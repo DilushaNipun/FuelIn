@@ -2,7 +2,7 @@
                 <footer class="footer">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
-<p>Developed By<a href="https://phpgurukul.com/" class="text-dark">PHPGurukul</a> ©2019</p>
+<p><a href="" class="text-dark"></a> ©2023</p>
                         </div>
                     </div>
                 </footer>

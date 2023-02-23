@@ -33,7 +33,7 @@
 <li class="nav-item">
 <a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#company_drp">
 <i class="ion ion-ios-copy"></i>
-<span class="nav-link-text">Company</span></a>
+<span class="nav-link-text">Station</span></a>
 <ul id="company_drp" class="nav flex-column collapse collapse-level-1">
 <li class="nav-item">
 <ul class="nav flex-column">
@@ -51,7 +51,7 @@
 <li class="nav-item">
 <a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#product_drp">
 <i class="ion ion-ios-list-box"></i>
-<span class="nav-link-text">Product</span></a>
+<span class="nav-link-text">Customer</span></a>
 <ul id="product_drp" class="nav flex-column collapse collapse-level-1">
 <li class="nav-item">
 <ul class="nav flex-column">
@@ -69,7 +69,7 @@
 <li class="nav-item">
 <a class="nav-link" href="search-product.php">
 <i class="glyphicon glyphicon-search"></i>
-<span class="nav-link-text">Search Product</span>
+<span class="nav-link-text">Search Customer</span>
 </a>
 </li>
 
