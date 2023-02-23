@@ -142,6 +142,16 @@ body {
   background: #acb0b1;
   overflow-x: hidden; }
 
+
+  /* 2023*/
+  .small-box {
+    border-radius: 0.25rem;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+
 .main-font, .jq-toast-wrap .jq-toast-single, .jq-toast-wrap .jq-toast-single .jq-toast-heading {
   font-family: "Roboto", sans-serif; }
 
@@ -20664,5 +20674,8 @@ table.dataTable {
     flex-basis: auto !important; }
 
   /* IE11 */ }
+
+
+  
 
 /*# sourceMappingURL=style.css.map */
