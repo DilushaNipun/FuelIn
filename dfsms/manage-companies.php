@@ -19,7 +19,7 @@ echo "<script>window.location.href='manage-companies.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Manage Companies</title>
+    <title>Manage Stations</title>
     <!-- Data Table CSS -->
     <link href="vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -44,7 +44,7 @@ include_once('includes/sidebar.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Company</a></li>
+<li class="breadcrumb-item"><a href="#">Stations</a></li>
 <li class="breadcrumb-item active" aria-current="page">Manage</li>
                 </ol>
             </nav>
@@ -55,7 +55,7 @@ include_once('includes/sidebar.php');
 
                 <!-- Title -->
 <div class="hk-pg-header">
- <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Companies</h4>
+ <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Stations</h4>
                 </div>
                 <!-- /Title -->
 
@@ -70,7 +70,7 @@ include_once('includes/sidebar.php');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Company Name</th>
+                                                    <th>Station Name</th>
                                                     <th>Posting Date</th>
                                                     <th>Action</th>
                                                     

@@ -54,7 +54,7 @@ include_once('includes/sidebar.php');
 
                 <!-- Title -->
 <div class="hk-pg-header">
- <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Categories</h4>
+ <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Fuel Type</h4>
                 </div>
                 <!-- /Title -->
 
@@ -69,8 +69,8 @@ include_once('includes/sidebar.php');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Category</th>
-                                                    <th>Category Code</th>
+                                                    <th>Fuel Type</th>
+                                                    <th>Fuel Type Code</th>
                                                     <th>Posting Date</th>
                                                     <th>Action</th>
                                                     

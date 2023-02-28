@@ -18,7 +18,7 @@ echo "<script>window.location.href='manage-categories.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Manage Invoices</title>
+    <title>View Invoices</title>
     <!-- Data Table CSS -->
     <link href="vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -67,8 +67,8 @@ include_once('includes/sidebar.php');
                             <div class="invoice-from-wrap">
                                 <div class="row">
                                     <div class="col-md-7 mb-20">
-<h3 class="mb-35 font-weight-600">     DFSMS </h3>
-<h6 class="mb-5">Dairy Farm Shop Management System</h6>
+<h3 class="mb-35 font-weight-600">    FuellIN </h3>
+<h6 class="mb-5">Fuel Management System</h6>
 
 </div>
 
