@@ -15,7 +15,7 @@
 <li class="nav-item">
 <a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#cats_drp">
 <i class="ion ion-ios-copy"></i>
-<span class="nav-link-text">Category</span></a>
+<span class="nav-link-text">Fuel Type</span></a>
 <ul id="cats_drp" class="nav flex-column collapse collapse-level-1">
 <li class="nav-item">
 <ul class="nav flex-column">
@@ -47,19 +47,24 @@
 </li>
 </ul>
 </li>
-
+<li class="nav-item">
+<a class="nav-link" href="#">
+<i class="ion ion-ios-list-box"></i>
+<span class="nav-link-text">Fuel Requests</span>
+</a>
+</li>
 <li class="nav-item">
 <a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#product_drp">
 <i class="ion ion-ios-list-box"></i>
-<span class="nav-link-text">Customer</span></a>
+<span class="nav-link-text">Orders</span></a>
 <ul id="product_drp" class="nav flex-column collapse collapse-level-1">
 <li class="nav-item">
 <ul class="nav flex-column">
 <li class="nav-item">
-<a class="nav-link" href="add-product.php">Add</a>
+<a class="nav-link" href="add-product.php">Prepare Order</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="manage-products.php">Manage</a>
+<a class="nav-link" href="manage-products.php">Manage Order</a>
 </li>
 </ul>
 </li>
@@ -69,7 +74,7 @@
 <li class="nav-item">
 <a class="nav-link" href="search-product.php">
 <i class="glyphicon glyphicon-search"></i>
-<span class="nav-link-text">Search Customer</span>
+<span class="nav-link-text">Dispatch Order</span>
 </a>
 </li>
 

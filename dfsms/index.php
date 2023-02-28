@@ -36,7 +36,7 @@ if(isset($_POST['login']))
     <style>
         .hk-pg-wrapper.hk-auth-wrapper .auth-cover-img .auth-cover-info{
             height: 100vh !important;
-            width:100vw !important;
+            /* width:100vw !important; */
         }
     </style>
 </head>

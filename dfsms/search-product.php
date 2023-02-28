@@ -23,7 +23,7 @@ switch($_GET["action"]) {
                                 if(empty($_SESSION["cart_item"][$k]["quantity"])) {
                                     $_SESSION["cart_item"][$k]["quantity"] = 0;
                                 }
-                                $_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
+                                $_SESSION["cart_item"][$k]["quantity"] += (int)$_POST["quantity"];
                             }
                     }
                 } else {
@@ -109,8 +109,8 @@ include_once('includes/sidebar.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Search</a></li>
-<li class="breadcrumb-item active" aria-current="page">Product</li>
+<li class="breadcrumb-item"><a href="#">Order</a></li>
+<li class="breadcrumb-item active" aria-current="page">Dispatch Order</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -119,7 +119,7 @@ include_once('includes/sidebar.php');
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Search Product</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Dispatch Order</h4>
                 </div>
                 <!-- /Title -->
 
@@ -135,9 +135,9 @@ include_once('includes/sidebar.php');
                                        
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Product Name</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Product Name" name="productname" required>
-<div class="invalid-feedback">Please provide a valid product name.</div>
+<label for="validationCustom03">Order Id</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Order Id" name="productname" required>
+<div class="invalid-feedback">Please provide a valid Order Id.</div>
 </div>
 </div>
 
@@ -158,11 +158,11 @@ include_once('includes/sidebar.php');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Category</th>
-                                                    <th>Company</th>
-                                                    <th>Product</th>
-                                                    <th>Pricing</th>
-                                                    <th>Quantity</th>
+                                                    <th>Fuel Type</th>
+                                                    <th>Fuel Station Name</th>
+                                                    <th>Order Id</th>
+                                                    <th>price per litre</th>
+                                                    <th>No Of Litres</th>
                                                     <th>Action</th>
                                                     
                                                 </tr>
@@ -204,7 +204,7 @@ $cnt++;
 <form class="needs-validation" method="post" novalidate>
 
 <!--- Shopping Cart ---->
-<section class="hk-sec-wrapper">
+<section class="hk-sec-wrapper" >
      
                             <div class="row">
                                 <div class="col-sm">

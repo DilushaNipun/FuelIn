@@ -5,7 +5,7 @@ include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
-// Add company Code
+// Add Station Code
 if(isset($_POST['submit']))
 {
 //Getting Post Values
@@ -19,6 +19,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 echo "<script>window.location.href='add-company.php'</script>";    
 }
 }
+//  station Add
 
     ?>
 <!DOCTYPE html>
@@ -27,7 +28,7 @@ echo "<script>window.location.href='add-company.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Add Company</title>
+    <title>Add Station</title>
     <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
@@ -56,7 +57,7 @@ include_once('includes/sidebar.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Company</a></li>
+<li class="breadcrumb-item"><a href="#">Station</a></li>
 <li class="breadcrumb-item active" aria-current="page">Add</li>
                 </ol>
             </nav>
@@ -66,7 +67,7 @@ include_once('includes/sidebar.php');
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Add Company</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Add Station</h4>
                 </div>
                 <!-- /Title -->
 
@@ -81,9 +82,9 @@ include_once('includes/sidebar.php');
                                        
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Company Name</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Company Name" name="companyname" required>
-<div class="invalid-feedback">Please provide a valid Company name.</div>
+<label for="validationCustom03">Station Name</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Station Name" name="companyname" required>
+<div class="invalid-feedback">Please provide a valid Station name.</div>
 </div>
 </div>
 

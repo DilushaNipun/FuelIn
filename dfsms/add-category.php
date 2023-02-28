@@ -57,7 +57,7 @@ include_once('includes/sidebar.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Product</a></li>
+<li class="breadcrumb-item"><a href="#">Fuel Type</a></li>
 <li class="breadcrumb-item active" aria-current="page">Add</li>
                 </ol>
             </nav>
@@ -67,7 +67,7 @@ include_once('includes/sidebar.php');
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Add Product</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Add Fuel Type</h4>
                 </div>
                 <!-- /Title -->
 
@@ -82,17 +82,17 @@ include_once('includes/sidebar.php');
                                        
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Category</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Category" name="category" required>
-<div class="invalid-feedback">Please provide a valid category name.</div>
+<label for="validationCustom03">Fuel Type</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Type" name="category" required>
+<div class="invalid-feedback">Please provide a valid Fuel Type.</div>
 </div>
 </div>
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Category Code</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Category Code" name="categorycode" required>
-<div class="invalid-feedback">Please provide a valid category code.</div>
+<label for="validationCustom03">Fuel Type Code</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Type Code" name="categorycode" required>
+<div class="invalid-feedback">Please provide a valid Fuel Type code.</div>
 </div>
 </div>
                                  
