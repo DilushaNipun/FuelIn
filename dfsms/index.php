@@ -50,7 +50,7 @@ if(isset($_POST['login']))
         <!-- Main Content -->
         <div class="hk-pg-wrapper hk-auth-wrapper">
             <header class="d-flex justify-content-between align-items-center">
-<a class="d-flex auth-brand align-items-center" href="#">
+<a class="d-flex auth-brand align-items-center" href="home.php">
 <span class="text-white font-30">FuelIn Management System</span>
                 </a>
                
