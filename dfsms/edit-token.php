@@ -5,28 +5,31 @@ include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
-// Add product Code
-if(isset($_POST['submit']))
+// Edit product Code
+if(isset($_POST['update']))
 {
-     
-    $GivenQuota=$_POST['givenQuota'];   
-    $IssueDate=$_POST['issueDate'];
-    $EstiTime=$_POST['estiTime'];
-    $VehicleNo=$_POST['vehicleNo'];
-    $FuelType=$_POST['fuelType']; 
-    $Issued_Quantity=$_POST['issuedQuantity'];
-    (int)$RemainFuelQuota = $GivenQuota - $Issued_Quantity;
-    $query=mysqli_query($con,"insert into tbltoken(Given_Quota,Remain_Fuel_Quota,Vehicle_No,Fuel_type,Issued_Quantity,Esti_Time) values('$GivenQuota','$RemainFuelQuota','$VehicleNo','$FuelType','$Issued_Quantity','$EstiTime')");
+$pid=substr(base64_decode($_GET['pid']),0,-5);    
 //Getting Post Values
+$GivenQuota=$_POST['givenQuota'];    
+$VehicleNo=$_POST['vehicleNo'];
+$FuelType=$_POST['fuelType'];
+$Issued_Quantity=$_POST['issuedQuantity'];
+(int)$RemainFuelQuota = $GivenQuota - $Issued_Quantity;
+$query=mysqli_query($con,"update tbltoken set Given_Quota='$GivenQuota',Remain_Fuel_Quota='$RemainFuelQuota',Vehicle_No='$VehicleNo',Fuel_type='$FuelType',Issued_Quantity='$Issued_Quantity' where Token_ID='$pid'"); 
+
 
 if($query){
-echo "<script>alert('Token added successfully.');</script>";   
-echo "<script>window.location.href='add-token.php'</script>";
-} else{
-echo "<script>alert('Something went wrong. Please try again.');</script>";   
-echo "<script>window.location.href='add-token.php'</script>";    
+    echo "<script>alert('Token updated successfully.');</script>";   
+    echo "<script>window.location.href='manage-token.php'</script>";
+    } else{
+    echo "<script>alert('Something went wrong. Please try again.');</script>";   
+    echo "<script>window.location.href='edit-token.php'</script>";    
+    }
+    
+
 }
-}
+
+
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,13 +37,15 @@ echo "<script>window.location.href='add-token.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Add Token</title>
+    <title>Edit Token</title>
     <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+    
+    
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-vertical-nav">
 
@@ -50,14 +55,13 @@ include_once('includes/sidebar.php');
 ?>
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->
-
         <!-- Main Content -->
         <div class="hk-pg-wrapper">
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
 <li class="breadcrumb-item"><a href="#">Token</a></li>
-<li class="breadcrumb-item active" aria-current="page">Add Token</li>
+<li class="breadcrumb-item active" aria-current="page">Edit</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -66,7 +70,7 @@ include_once('includes/sidebar.php');
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Add Token</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Edit Token</h4>
                 </div>
                 <!-- /Title -->
 
@@ -78,20 +82,25 @@ include_once('includes/sidebar.php');
 <div class="row">
 <div class="col-sm">
 <form class="needs-validation" method="post" novalidate>
-          
+<?php
+$pid=substr(base64_decode($_GET['pid']),0,-5);
+$query=mysqli_query($con,"select * from tbltoken where Token_ID='$pid'");
+while($result=mysqli_fetch_array($query))
+{    
+?> 
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Vehicle Number</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Vehicle Number" name="vehicleNo" required>
+<input type="text" class="form-control" id="validationCustom03" value="<?php echo $result['Vehicle_No'];?>" name="vehicleNo" required>
 <div class="invalid-feedback">Please provide a valid Vehicle Number.</div>
 </div>
-</div> 
+</div>   
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Fuel Type</label>
- <select class="form-control custom-select" name="fuelType" required>
-<option value="">Select Fuel Type</option>
+<select class="form-control custom-select" name="fuelType" required>
+ <option value="<?php echo $result['Fuel_type'];?>"><?php echo $result['Fuel_type'];?></option>
 <?php
 $ret=mysqli_query($con,"select CategoryName from tblcategory");
 while($row=mysqli_fetch_array($ret))
@@ -106,26 +115,22 @@ while($row=mysqli_fetch_array($ret))
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Fuel Quota Limit</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Quota" name="givenQuota" required>
-<div class="invalid-feedback">Please provide a valid Fuel Quota.</div>
+<input type="text" class="form-control" id="validationCustom03" value="<?php echo $result['Given_Quota'];?>" name="givenQuota" required>
+<div class="invalid-feedback">Please provide a valid Quota Limit.</div>
 </div>
 </div>
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Issued Fuel Quantity</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Issued Fuel Quantity" name="issuedQuantity" required>
+<label for="validationCustom03">Fuel Quantity</label>
+<input type="text" class="form-control" id="validationCustom03" value="<?php echo $result['Issued_Quantity'];?>" name="issuedQuantity" required>
 <div class="invalid-feedback">Please provide a valid Fuel Quantity.</div>
 </div>
 </div>
-<div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03">Token Expire Date</label>
-<input class="form-control" type="date" name="estiTime" required  />
-<div class="invalid-feedback">Please provide a valid date.</div>
-</div>
-</div> 
-<button class="btn btn-primary" type="submit" name="submit">Submit</button>
+
+<?php } ?>
+<a href="manage-token.php"><button class="btn btn-secondary" type="button" name="back">Back</button></a>
+<button class="btn btn-primary" type="submit" name="update">Update</button>
 </form>
 </div>
 </div>
