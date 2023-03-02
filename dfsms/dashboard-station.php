@@ -99,14 +99,14 @@ $listedproduct=mysqli_num_rows($sql);
 <div class="card-body">
 <div class="d-flex justify-content-between mb-5">
 <div>
-<span class="d-block font-19 text-dark font-weight-700">Orders</span>
+<span class="d-block font-19 text-dark font-weight-700">Customers</span>
 </div>
 <div>
 </div>
 </div>
 <div class="text-center">
 <span class="d-block font-45 display-3 text-dark mb-7"><?php echo $listedproduct;?></span>
-<small class="d-block text-dark">Listed Orders</small>
+<small class="d-block text-dark">Listed Customers</small>
 </div>
 </div>
 </div>

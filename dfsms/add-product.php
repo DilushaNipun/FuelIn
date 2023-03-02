@@ -15,7 +15,7 @@ $pname=$_POST['productname'];
 $pprice=$_POST['productprice'];
 $query=mysqli_query($con,"insert into tblproducts(CategoryName,CompanyName,ProductName,ProductPrice) values('$catname','$company','$pname','$pprice')"); 
 if($query){
-echo "<script>alert('Product added successfully.');</script>";   
+echo "<script>alert('Order added successfully.');</script>";   
 echo "<script>window.location.href='add-product.php'</script>";
 } else{
 echo "<script>alert('Something went wrong. Please try again.');</script>";   
@@ -30,7 +30,7 @@ echo "<script>window.location.href='add-product.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Add Product</title>
+    <title>Add Order</title>
     <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
@@ -69,7 +69,7 @@ include_once('includes/sidebar.php');
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Prepare Order</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Prepare Fuel Order</h4>
                 </div>
                 <!-- /Title -->
 
@@ -116,7 +116,7 @@ while($row=mysqli_fetch_array($ret))
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Station</label>
+<label for="validationCustom03">Fuel Station</label>
  <select class="form-control custom-select" name="company" required>
 <option value="">Select Station</option>
 <?php
@@ -126,7 +126,7 @@ while($row=mysqli_fetch_array($ret))
 <option value="<?php echo $row['CompanyName'];?>"><?php echo $row['CompanyName'];?></option>
 <?php } ?>
 </select>
-<div class="invalid-feedback">Please select a Station.</div>
+<div class="invalid-feedback">Please select a station.</div>
 </div>
 </div>
   

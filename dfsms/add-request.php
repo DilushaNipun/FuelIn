@@ -5,19 +5,22 @@ include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
-// Edit product Code
-if(isset($_POST['update']))
+// Add product Code
+if(isset($_POST['submit']))
 {
-$pid=substr(base64_decode($_GET['pid']),0,-5);    
 //Getting Post Values
 $catname=$_POST['category']; 
 $company=$_POST['company'];   
-// $pname=$_POST['productname'];
+$pname=$_POST['productname'];
 $pprice=$_POST['productprice'];
-$query=mysqli_query($con,"update tblproducts set CategoryName='$catname',CompanyName='$company',ProductPrice='$pprice' where id='$pid'"); 
-echo "<script>alert('Order updated successfully.');</script>";   
-echo "<script>window.location.href='manage-products.php'</script>";
-
+$query=mysqli_query($con,"insert into tblproducts(CategoryName,CompanyName,ProductName,ProductPrice) values('$catname','$company','$pname','$pprice')"); 
+if($query){
+echo "<script>alert('Request added successfully.');</script>";   
+echo "<script>window.location.href='add-request.php'</script>";
+} else{
+echo "<script>alert('Something went wrong. Please try again.');</script>";   
+echo "<script>window.location.href='add-request.php'</script>";    
+}
 }
 
     ?>
@@ -27,7 +30,7 @@ echo "<script>window.location.href='manage-products.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Add Product</title>
+    <title>Add Request</title>
     <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
@@ -48,13 +51,16 @@ include_once('includes/sidebar.php');
 
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->
+
+
+
         <!-- Main Content -->
         <div class="hk-pg-wrapper">
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Order</a></li>
-<li class="breadcrumb-item active" aria-current="page">Edit</li>
+<li class="breadcrumb-item"><a href="#">Fuel Request</a></li>
+<li class="breadcrumb-item active" aria-current="page">Add Request</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -63,7 +69,7 @@ include_once('includes/sidebar.php');
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Edit Fuel Order</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Add Fuel Request</h4>
                 </div>
                 <!-- /Title -->
 
@@ -75,17 +81,28 @@ include_once('includes/sidebar.php');
 <div class="row">
 <div class="col-sm">
 <form class="needs-validation" method="post" novalidate>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Fuel Station</label>
+ <select class="form-control custom-select" name="company" required>
+<option value="">Select Station</option>
 <?php
-$pid=substr(base64_decode($_GET['pid']),0,-5);
-$query=mysqli_query($con,"select * from tblproducts where id='$pid'");
-while($result=mysqli_fetch_array($query))
-{    
-?>                                       
+$ret=mysqli_query($con,"select CompanyName from tblcompany");
+while($row=mysqli_fetch_array($ret))
+{?>
+<option value="<?php echo $row['CompanyName'];?>"><?php echo $row['CompanyName'];?></option>
+<?php } ?>
+</select>
+<div class="invalid-feedback">Please select a station.</div>
+</div>
+</div>
+
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Fuel Type</label>
  <select class="form-control custom-select" name="category" required>
-<option value="<?php echo $result['CategoryName'];?>"><?php echo $catname=$result['CategoryName'];?></option>
+<option value="">Select Fuel Type</option>
 <?php
 $ret=mysqli_query($con,"select CategoryName from tblcategory");
 while($row=mysqli_fetch_array($ret))
@@ -93,42 +110,24 @@ while($row=mysqli_fetch_array($ret))
 <option value="<?php echo $row['CategoryName'];?>"><?php echo $row['CategoryName'];?></option>
 <?php } ?>
 </select>
-<div class="invalid-feedback">Please select a fuel.</div>
+<div class="invalid-feedback">Please select a Fuel Type.</div>
 </div>
 </div>
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Station</label>
- <select class="form-control custom-select" name="company" required>
-<option value="<?php echo $result['CompanyName'];?>"><?php echo $result['CompanyName'];?></option>
-<?php
-$ret=mysqli_query($con,"select CompanyName from tblcompany");
-while($rw=mysqli_fetch_array($ret))
-{?>
-<option value="<?php echo $rw['CompanyName'];?>"><?php echo $rw['CompanyName'];?></option>
-<?php } ?>
-</select>
-<div class="invalid-feedback">Please select a station.</div>
+<label for="validationCustom03">Fuel Quantity</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Price" name="productprice" required>
+<div class="invalid-feedback">Please enter fuel quantity.</div>
 </div>
 </div>
- <!-- <div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03">Order Id</label>
-<input type="text" class="form-control" id="validationCustom03" value="<?php echo $result['ProductName'];?>" name="productname" required>
-<div class="invalid-feedback">Please provide a valid product name.</div>
-</div>
-</div>    -->
 
-<div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03">Fuel Price / Litre</label>
-<input type="text" class="form-control" id="validationCustom03" value="<?php echo $result['ProductPrice'];?>" name="productprice" required>
-<div class="invalid-feedback">Please provide a valid price.</div>
-</div>
-</div>
-<?php } ?>
-<button class="btn btn-primary" type="submit" name="update">Update</button>
+
+  
+
+
+
+<button class="btn btn-primary" type="submit" name="submit">Submit</button>
 </form>
 </div>
 </div>
