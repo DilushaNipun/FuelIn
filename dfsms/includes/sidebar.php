@@ -48,6 +48,23 @@
 </ul>
 </li>
 <li class="nav-item">
+<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#product_drp">
+<i class="ion ion-ios-list-box"></i>
+<span class="nav-link-text">Fuel Tokens</span></a>
+<ul id="product_drp" class="nav flex-column collapse collapse-level-1">
+<li class="nav-item">
+<ul class="nav flex-column">
+<li class="nav-item">
+<a class="nav-link" href="add-token.php">Add Token</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="manage-token.php">Manage Token</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="nav-item">
 <a class="nav-link" href="#">
 <i class="ion ion-ios-list-box"></i>
 <span class="nav-link-text">Fuel Requests</span>
