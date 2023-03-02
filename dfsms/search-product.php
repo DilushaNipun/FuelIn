@@ -209,7 +209,7 @@ $cnt++;
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="table-wrap">
-<h4>Shopping Cart</h4>
+<h4>Order Cart</h4>
 <hr />
 
 <a id="btnEmpty" href="search-product.php?action=empty" >Empty Cart</a>

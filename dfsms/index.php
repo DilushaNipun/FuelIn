@@ -10,11 +10,11 @@ if(isset($_POST['login']))
     $ret=mysqli_fetch_array($query);
     if($ret>0){
       $_SESSION['aid']=$ret['ID'];
-     header('location:add-category.php');
+     header('location:dashboard.php');
     }
     else{
-     echo "<script>alert('Invalid details. Please try again.');</script>";   
-   echo "<script>window.location.href='dashboard.php'</script>";
+        echo "<script>alert('Invalid details. Please try again.');</script>";   
+        echo "<script>window.location.href='dashboard.php'</script>";
     }
   }
   ?>

@@ -5,14 +5,20 @@ include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
-
+// Code for deletion       
+if(isset($_GET['del'])){    
+    $cmpid=substr(base64_decode($_GET['del']),0,-5);
+    $query=mysqli_query($con,"delete from tblcompany where id='$cmpid'");
+    echo "<script>alert('Company record deleted.');</script>";   
+    echo "<script>window.location.href='manage-request.php'</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Manage Orders</title>
+    <title>Manage Request</title>
     <!-- Data Table CSS -->
     <link href="vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -37,7 +43,7 @@ include_once('includes/sidebar.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Order</a></li>
+<li class="breadcrumb-item"><a href="#">Fuel Request</a></li>
 <li class="breadcrumb-item active" aria-current="page">Manage</li>
                 </ol>
             </nav>
@@ -48,8 +54,9 @@ include_once('includes/sidebar.php');
 
                 <!-- Title -->
 <div class="hk-pg-header">
- <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Fuel Orders</h4>
-                </div>
+ <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Fuel Request</h4>
+ 
+</div>
                 <!-- /Title -->
 
                 <!-- Row -->
@@ -63,10 +70,10 @@ include_once('includes/sidebar.php');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Order Id</th>
+                                                    <th>Fuel Station</th>
                                                     <th>Fuel Type</th>
-                                                    <th>Station</th>
-                                                    <th>Pricing</th>
+                                                    <th>Fuel Quantity</th>
+                                                    <th>Status</th>
                                                     <th>Posting Date</th>
                                                     <th>Action</th>
                                                     
@@ -82,13 +89,13 @@ while($row=mysqli_fetch_array($query))
 ?>                                                
 <tr>
 <td><?php echo $cnt;?></td>
-<td><?php echo $row['ProductName'];?></td>
-<td><?php echo $row['CategoryName'];?></td>
 <td><?php echo $row['CompanyName'];?></td>
+<td><?php echo $row['CategoryName'];?></td>
+<td><?php echo $row['ProductPrice'];?></td>
 <td><?php echo $row['ProductPrice'];?></td>
 <td><?php echo $row['PostingDate'];?></td>
 <td>
-<a href="edit-product.php?pid=<?php echo base64_encode($row['id'].$rno);?>" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
+<a href="manage-request.php?del=<?php echo base64_encode($row['id'].$rno);?>" data-toggle="tooltip" data-original-title="Cancel" onclick="return confirm('Do you really want to cancel?');"> <i class="ti-close txt-danger"></i> </a>                
 </td>
 </tr>
 <?php 
