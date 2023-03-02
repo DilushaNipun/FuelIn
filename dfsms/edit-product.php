@@ -128,6 +128,7 @@ while($rw=mysqli_fetch_array($ret))
 </div>
 </div>
 <?php } ?>
+<button class="btn btn-primary" type="button" name="back">Back</button>
 <button class="btn btn-primary" type="submit" name="update">Update</button>
 </form>
 </div>

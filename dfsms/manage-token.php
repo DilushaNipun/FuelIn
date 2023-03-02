@@ -6,6 +6,14 @@ if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
 
+    // Code for deletion       
+if(isset($_GET['del'])){    
+    $pid=substr(base64_decode($_GET['del']),0,-5);
+    $query=mysqli_query($con,"delete from tbltoken where Token_Id='$pid'");
+    echo "<script>alert('Token record deleted.');</script>";   
+    echo "<script>window.location.href='manage-token.php'</script>";
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,32 +71,35 @@ include_once('includes/sidebar.php');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Category</th>
-                                                    <th>Company</th>
-                                                    <th>Product</th>
-                                                    <th>Pricing</th>
-                                                    <th>Posting Date</th>
+                                                    <th>Vehicle Number</th>
+                                                    <th>Fuel Type</th>
+                                                    <th>Fuel Quota Limit</th>
+                                                    <th>Remain Fuel Quota</th>
+                                                    <th>Issued Quantity</th>
+                                                    <th>Token Expire Date</th>
                                                     <th>Action</th>
-                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
 <?php
 $rno=mt_rand(10000,99999);  
-$query=mysqli_query($con,"select * from tblproducts");
+$query=mysqli_query($con,"select * from tbltoken");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {    
 ?>                                                
 <tr>
 <td><?php echo $cnt;?></td>
-<td><?php echo $row['CategoryName'];?></td>
-<td><?php echo $row['CompanyName'];?></td>
-<td><?php echo $row['ProductName'];?></td>
-<td><?php echo $row['ProductPrice'];?></td>
-<td><?php echo $row['PostingDate'];?></td>
+<td><?php echo $row['Vehicle_No'];?></td>
+<td><?php echo $row['Fuel_type'];?></td>
+<td><?php echo $row['Given_Quota'];?></td>
+<td><?php echo $row['Remain_Fuel_Quota'];?></td>
+<td><?php echo $row['Issued_Quantity'];?></td>
+<td><?php echo $row['Esti_Time'];?></td>
+
 <td>
-<a href="edit-product.php?pid=<?php echo base64_encode($row['id'].$rno);?>" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
+<a href="edit-token.php?pid=<?php echo base64_encode($row['Token_ID'].$rno);?>" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
+<a href="manage-token.php?del=<?php echo base64_encode($row['Token_ID'].$rno);?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="icon-trash txt-danger"></i> </a>
 </td>
 </tr>
 <?php 
