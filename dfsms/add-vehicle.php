@@ -9,10 +9,14 @@ if (strlen($_SESSION['aid']==0)) {
 if(isset($_POST['submit']))
 {
 //Getting Post Values
-$cname=$_POST['companyname'];   
-$query=mysqli_query($con,"insert into tblcompany(CompanyName) values('$cname')"); 
+$Vehi_No=$_POST['VehiNo'];   
+$Fuel_Quota=$_POST['fuelQuota'];   
+$Fuel_Type=$_POST['fuelType'];   
+$Vehi_Type=$_POST['vehType'];   
+$Customer_NIC=$_POST['customerNIC'];
+$query=mysqli_query($con,"insert into tblvehicle(Vehi_No,Vehi_Type,Fuel_Type,Fuel_Quota,Customer_NIC) values('$Vehi_No','$Vehi_Type','$Fuel_Type','$Fuel_Quota','$Customer_NIC')"); 
 if($query){
-echo "<script>alert('Company added successfully.');</script>";   
+echo "<script>alert('Vehicle added successfully.');</script>";   
 echo "<script>window.location.href='manage-vehicle.php'</script>";
 } else{
 echo "<script>alert('Something went wrong. Please try again.');</script>";   
@@ -35,8 +39,6 @@ echo "<script>window.location.href='add-vehicle.php'</script>";
 </head>
 
 <body>
-    
-    
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-vertical-nav">
 
@@ -77,7 +79,7 @@ include_once('includes/sidebar.php');
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Vehicle Number</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Station Name" name="companyname" required>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Vehicle Number" name="VehiNo" required>
 <div class="invalid-feedback">Please provide a valid Vehicle name.</div>
 </div>
 </div>
@@ -85,14 +87,13 @@ include_once('includes/sidebar.php');
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Vehicle Type</label>
- <select class="form-control custom-select" name="fuelType" required>
-<option value="">Select Vehicle Type</option>
-<?php
-$ret=mysqli_query($con,"select CategoryName from tblcategory");
-while($row=mysqli_fetch_array($ret))
-{?>
-<option value="<?php echo $row['CategoryName'];?>"><?php echo $row['CategoryName'];?></option>
-<?php } ?>
+<select class="form-control custom-select" name="vehType" required>
+    <option value="">Select Vehicle Type</option>
+	<option value="Car">Car</option>
+	<option value="Van">Van</option>
+	<option value="Heavy Vehicle">Heavy Vehicle</option>
+	<option value="Motor Bicycle">Motor Bicycle</option>
+	<option value="Three Wheeler">Three Wheeler</option>
 </select>
 <div class="invalid-feedback">Please select a Vehicle Type.</div>
 </div>
@@ -116,8 +117,16 @@ while($row=mysqli_fetch_array($ret))
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
+<label for="validationCustom03">Customer NIC</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Customer NIC" name="customerNIC" required>
+<div class="invalid-feedback">Please provide a valid NIC.</div>
+</div>
+</div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
 <label for="validationCustom03">Fuel Quota</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Quota" name="companyname" required>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Quota" name="fuelQuota" required>
 <div class="invalid-feedback">Please provide a valid fuel quota.</div>
 </div>
 </div>
@@ -131,17 +140,12 @@ while($row=mysqli_fetch_array($ret))
 </div>
 </div>
 </div>
-
-
             <!-- Footer -->
 <?php include_once('includes/footer.php');?>
             <!-- /Footer -->
-
         </div>
         <!-- /Main Content -->
-
     </div>
-
     <script src="vendors/jquery/dist/jquery.min.js"></script>
     <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -153,7 +157,6 @@ while($row=mysqli_fetch_array($ret))
     <script src="dist/js/toggle-data.js"></script>
     <script src="dist/js/init.js"></script>
     <script src="dist/js/validation-data.js"></script>
-
 </body>
 </html>
 <?php } ?>

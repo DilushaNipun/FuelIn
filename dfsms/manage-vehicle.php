@@ -8,8 +8,8 @@ if (strlen($_SESSION['aid']==0)) {
 // Code for deletion       
 if(isset($_GET['del'])){    
 $cmpid=substr(base64_decode($_GET['del']),0,-5);
-$query=mysqli_query($con,"delete from tblcompany where id='$cmpid'");
-echo "<script>alert('Company record deleted.');</script>";   
+$query=mysqli_query($con,"delete from tblvehicle where Vehi_No='$cmpid'");
+echo "<script>alert('Vehicle record deleted.');</script>";   
 echo "<script>window.location.href='manage-vehicle.php'</script>";
 }
 
@@ -67,10 +67,11 @@ include_once('includes/sidebar.php');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Vehicle Name</th>
+                                                    <th>Vehicle Number</th>
                                                     <th>Vehicle Type</th>
                                                     <th>Fuel Type</th>
                                                     <th>Fuel Quota</th>
+                                                    <th>Customer NIC</th>
                                                     <th>Action</th>
                                                     
                                                 </tr>
@@ -78,20 +79,21 @@ include_once('includes/sidebar.php');
                                             <tbody>
 <?php
 $rno=mt_rand(10000,99999);  
-$query=mysqli_query($con,"select * from tblproducts");
+$query=mysqli_query($con,"select * from tblvehicle");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {    
 ?>                                                
 <tr>
 <td><?php echo $cnt;?></td>
-<td><?php echo $row['CompanyName'];?></td>
-<td><?php echo $row['CategoryName'];?></td>
-<td><?php echo $row['CategoryName'];?></td>
-<td><?php echo $row['ProductPrice'];?></td>
+<td><?php echo $row['Vehi_No'];?></td>
+<td><?php echo $row['Vehi_Type'];?></td>
+<td><?php echo $row['Fuel_Type'];?></td>
+<td><?php echo $row['Fuel_Quota'];?></td>
+<td><?php echo $row['Customer_NIC'];?></td>
 <td>
-<a href="edit-vehicle.php?compid=<?php echo base64_encode($row['id'].$rno);?>" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
-<a href="manage-vehicle.php?del=<?php echo base64_encode($row['id'].$rno);?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="icon-trash txt-danger"></i> </a>
+<a href="edit-vehicle.php?compid=<?php echo base64_encode($row['Vehi_No'].$rno);?>" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
+<a href="manage-vehicle.php?del=<?php echo base64_encode($row['Vehi_No'].$rno);?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="icon-trash txt-danger"></i> </a>
 </td>
 </tr>
 <?php 
