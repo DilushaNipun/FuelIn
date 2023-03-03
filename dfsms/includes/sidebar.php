@@ -49,41 +49,6 @@
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#vehicle_drp">
-<i class="ion ion-ios-car"></i>
-<span class="nav-link-text">Vehicle</span></a>
-<ul id="vehicle_drp" class="nav flex-column collapse collapse-level-1">
-<li class="nav-item">
-<ul class="nav flex-column">
-<li class="nav-item">
-<a class="nav-link" href="add-vehicle.php">Add</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="manage-vehicle.php">Manage</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#token_drp">
-<i class="ion ion-ios-paper"></i>
-<span class="nav-link-text">Fuel Tokens</span></a>
-<ul id="token_drp" class="nav flex-column collapse collapse-level-1">
-<li class="nav-item">
-<ul class="nav flex-column">
-<li class="nav-item">
-<a class="nav-link" href="add-token.php">Add Token</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="manage-token.php">Manage Token</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="nav-item">
 <a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#request_drp">
 <i class="ion ion-ios-list-box"></i>
 <span class="nav-link-text">Fuel Request</span>
@@ -128,25 +93,6 @@
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#payment_drp">
-<i class="ion ion-ios-card"></i>
-<span class="nav-link-text">Payment</span>
-</a>
-<ul id="payment_drp" class="nav flex-column collapse collapse-level-1">
-<li class="nav-item">
-<ul class="nav flex-column">
-<li class="nav-item">
-<a class="nav-link" href="add-payment.php">Make Payment</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="manage-payment.php">View Payment</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-
-<li class="nav-item">
 <a class="nav-link" href="invoices.php">
 <i class="ion ion-ios-list-box"></i>
 <span class="nav-link-text">Invoices</span>
@@ -173,11 +119,6 @@
 
 </ul>
                  
-                      
-                      
-                      
-                  
-                
                     <hr class="nav-separator">
             
                 </div>

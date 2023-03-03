@@ -10,10 +10,14 @@ if(isset($_POST['submit']))
 {
 //Getting Post Values
 $cname=$_POST['companyname'];   
-$query=mysqli_query($con,"insert into tblcompany(CompanyName) values('$cname')"); 
+$Location=$_POST['location'];   
+$Telephone=$_POST['telephone'];   
+$Email=$_POST['email'];   
+$Max_Stock=$_POST['maximumStock'];   
+$query=mysqli_query($con,"insert into tblcompany(CompanyName,Location,Telephone,Email,Max_Stock) values('$cname','$Location','$Telephone','$Email','$Max_Stock')"); 
 if($query){
-echo "<script>alert('Company added successfully.');</script>";   
-echo "<script>window.location.href='add-company.php'</script>";
+echo "<script>alert('Station added successfully.');</script>";   
+echo "<script>window.location.href='manage-companies.php'</script>";
 } else{
 echo "<script>alert('Something went wrong. Please try again.');</script>";   
 echo "<script>window.location.href='add-company.php'</script>";    
@@ -88,7 +92,38 @@ include_once('includes/sidebar.php');
 </div>
 </div>
 
-                                 
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Station Location</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Station Location" name="location" required>
+<div class="invalid-feedback">Please provide a valid location.</div>
+</div>
+</div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Telephone</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Telephone" name="telephone" required>
+<div class="invalid-feedback">Please provide a valid Telephone.</div>
+</div>
+</div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Email</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Email" name="email" required>
+<div class="invalid-feedback">Please provide a valid email.</div>
+</div>
+</div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Maximum Stock In Litres</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Maximum Stock" name="maximumStock" required>
+<div class="invalid-feedback">Please provide a valid Maximum Stock.</div>
+</div>
+</div>
+                              
 <button class="btn btn-primary" type="submit" name="submit">Submit</button>
 </form>
 </div>
@@ -98,8 +133,6 @@ include_once('includes/sidebar.php');
 </div>
 </div>
 </div>
-
-
             <!-- Footer -->
 <?php include_once('includes/footer.php');?>
             <!-- /Footer -->

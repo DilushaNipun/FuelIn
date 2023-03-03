@@ -6,11 +6,21 @@ if(isset($_POST['login']))
   {
     $adminuser=$_POST['username'];
     $password=md5($_POST['password']);
-    $query=mysqli_query($con,"select ID from tbladmin where  UserName='$adminuser' && Password='$password' ");
+    $query=mysqli_query($con,"select ID,AdminName from tbladmin where  UserName='$adminuser' && Password='$password' ");
     $ret=mysqli_fetch_array($query);
     if($ret>0){
       $_SESSION['aid']=$ret['ID'];
-     header('location:dashboard.php');
+      if($ret['AdminName'] == "Admin")
+      {
+        header('location:dashboard.php');
+      }
+     elseif($ret['AdminName'] == "Station"){
+        header('location:dashboard-station.php');
+     }
+     elseif($ret['AdminName'] == "Customer"){
+        header('location:dashboard-customer.php');
+     }
+
     }
     else{
         echo "<script>alert('Invalid details. Please try again.');</script>";   
@@ -50,7 +60,7 @@ if(isset($_POST['login']))
         <!-- Main Content -->
         <div class="hk-pg-wrapper hk-auth-wrapper">
             <header class="d-flex justify-content-between align-items-center">
-<a class="d-flex auth-brand align-items-center" href="home.php">
+<a class="d-flex auth-brand align-items-center" href="http://localhost/FuelIn/dfsms/FuelIn/index.html">
 <span class="text-white font-30">FuelIn Management System</span>
                 </a>
                

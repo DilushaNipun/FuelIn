@@ -1,7 +1,7 @@
 <?php
 session_start();
 //error_reporting(0);
-include('includes/config.php');
+
 if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
@@ -9,12 +9,12 @@ if (strlen($_SESSION['aid']==0)) {
 if(isset($_POST['submit']))
 {
 //Getting Post Values
-$cname=$_POST['companyname'];   
-$Location=$_POST['location'];   
-$Telephone=$_POST['telephone'];   
+$AdminName=$_POST['adminName'];   
+$UserName=$_POST['userName'];   
+$NIC=$_POST['nic'];   
 $Email=$_POST['email'];   
 $Max_Stock=$_POST['maximumStock'];   
-$query=mysqli_query($con,"insert into tblcompany(CompanyName,Location,Telephone,Email,Max_Stock) values('$cname','$Location','$Telephone','$Email','$Max_Stock')"); 
+$query=mysqli_query($con,"insert into tbladmin(AdminName,UserName,NIC,Email,Max_Stock) values('$cname','$Location','$Telephone','$Email','$Max_Stock')"); 
 if($query){
 echo "<script>alert('Station added successfully.');</script>";   
 echo "<script>window.location.href='manage-companies.php'</script>";
@@ -23,6 +23,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 echo "<script>window.location.href='add-company.php'</script>";    
 }
 }
+  }
     ?>
     
 <!DOCTYPE html>
@@ -71,7 +72,7 @@ echo "<script>window.location.href='add-company.php'</script>";
                         <li><a href="./contact.html">Contacts</a></li>
                     </ul>
                 </nav>
-                <a href="#" class="primary-btn signup-btn">Sign Up </a>
+                <a href="http://localhost/FuelIn/dfsms/index.php" class="primary-btn">Sign In</a>
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>

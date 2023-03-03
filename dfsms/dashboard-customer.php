@@ -11,7 +11,7 @@ if (strlen($_SESSION['aid']==0)) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Dashboard | Company</title>
+    <title>Dashboard</title>
     <link href="vendors/vectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" type="text/css" />
     <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@ if (strlen($_SESSION['aid']==0)) {
 	<div class="hk-wrapper hk-vertical-nav">
 
 <?php include_once('includes/navbar.php');
-include_once('includes/sidebar.php');
+include_once('includes/sidebar-customer.php');
 ?>
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->
@@ -66,30 +66,6 @@ $listedcat=mysqli_num_rows($query);
     </div>
 </div>
 							
-
-<?php
-$ret=mysqli_query($con,"select id from tblcompany");
-$listedcomp=mysqli_num_rows($ret);
-?>
-<div class="col-lg-3 col-md-6">
-<div class="card card-sm small-box bg-success">
-<div class="card-body">
-<div class="d-flex justify-content-between mb-5">
-<div>
-<span class="d-block font-19 text-white font-weight-700">Fuel Stations</span>
-</div>
-<div>
-</div>
-</div>
-
-<div class="text-center">
-<span class="d-block font-45 display-3 text-white mb-7"><span class="counter-anim"><?php echo $listedcomp;?></span></span>
-<small class="d-block text-white">Listed Stations</small>
-</div>
-</div>
-</div>
-</div>
-							
 <?php
 $sql=mysqli_query($con,"select id from tblproducts");
 $listedproduct=mysqli_num_rows($sql);
@@ -99,14 +75,14 @@ $listedproduct=mysqli_num_rows($sql);
 <div class="card-body">
 <div class="d-flex justify-content-between mb-5">
 <div>
-<span class="d-block font-19 text-dark font-weight-700">Orders</span>
+<span class="d-block font-19 text-dark font-weight-700">Customers</span>
 </div>
 <div>
 </div>
 </div>
 <div class="text-center">
 <span class="d-block font-45 display-3 text-dark mb-7"><?php echo $listedproduct;?></span>
-<small class="d-block text-dark">Listed Orders</small>
+<small class="d-block text-dark">Listed Customers</small>
 </div>
 </div>
 </div>
@@ -156,28 +132,6 @@ $row=mysqli_fetch_array($qury);
 </div>
 
 <?php
-$qurys=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice) as tt  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId where date(tblorders.InvoiceGenDate)=CURDATE()-1");
-$rw=mysqli_fetch_array($qurys);
-?>
-<div class="col-lg-3 col-md-6">
-<div class="card card-sm small-box bg-info">
-<div class="card-body">
-<div class="d-flex justify-content-between mb-5">
-<div>
-<span class="d-block font-19 text-dark font-weight-700">Yesterday Sales</span>
-</div>
-<div>
-</div>
-</div>
-<div class="text-center">
-<span class="d-block font-45 display-3 text-dark mb-7"><?php echo number_format($rw['tt'],2);?></span>
-<small class="d-block text-dark">Yesterday Total Sales</small>
-</div>
-</div>
-</div>
-</div>
-
-<?php
 $quryss=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice) as tt  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId where date(tblorders.InvoiceGenDate)=CURDATE()");
 $rws=mysqli_fetch_array($quryss);
 ?>
@@ -198,7 +152,10 @@ $rws=mysqli_fetch_array($quryss);
 </div>
 </div>
 </div>
+
+
 </div>
+					
             </div>
             <!-- /Container -->
 			
