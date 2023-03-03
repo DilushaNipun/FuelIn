@@ -47,6 +47,25 @@
 </li>
 </ul>
 </li>
+
+<li class="nav-item">
+<a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#vehicle_drp">
+<i class="ion ion-ios-car"></i>
+<span class="nav-link-text">Vehicle</span></a>
+<ul id="vehicle_drp" class="nav flex-column collapse collapse-level-1">
+<li class="nav-item">
+<ul class="nav flex-column">
+<li class="nav-item">
+<a class="nav-link" href="add-vehicle.php">Add</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="manage-vehicle.php">Manage</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
 <li class="nav-item">
 <a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#token_drp">
 <i class="ion ion-ios-paper"></i>
@@ -117,10 +136,10 @@
 <li class="nav-item">
 <ul class="nav flex-column">
 <li class="nav-item">
-<a class="nav-link" href="add-request.php">Make Payment</a>
+<a class="nav-link" href="add-payment.php">Make Payment</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="manage-request.php">View Payment</a>
+<a class="nav-link" href="manage-payment.php">View Payment</a>
 </li>
 </ul>
 </li>
