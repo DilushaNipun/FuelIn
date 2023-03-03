@@ -8,8 +8,8 @@ if (strlen($_SESSION['aid']==0)) {
 // Code for deletion       
 if(isset($_GET['del'])){    
     $cmpid=substr(base64_decode($_GET['del']),0,-5);
-    $query=mysqli_query($con,"delete from tblcompany where id='$cmpid'");
-    echo "<script>alert('Company record deleted.');</script>";   
+    $query=mysqli_query($con,"delete from tblrequest where Request_ID='$cmpid'");
+    echo "<script>alert('Request record deleted.');</script>";   
     echo "<script>window.location.href='manage-request.php'</script>";
 }
 ?>
@@ -73,8 +73,6 @@ include_once('includes/sidebar.php');
                                                     <th>Fuel Station</th>
                                                     <th>Fuel Type</th>
                                                     <th>Fuel Quantity</th>
-                                                    <th>Status</th>
-                                                    <th>Posting Date</th>
                                                     <th>Action</th>
                                                     
                                                 </tr>
@@ -82,20 +80,18 @@ include_once('includes/sidebar.php');
                                             <tbody>
 <?php
 $rno=mt_rand(10000,99999);  
-$query=mysqli_query($con,"select * from tblproducts");
+$query=mysqli_query($con,"select * from tblrequest");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {    
 ?>                                                
 <tr>
 <td><?php echo $cnt;?></td>
-<td><?php echo $row['CompanyName'];?></td>
-<td><?php echo $row['CategoryName'];?></td>
-<td><?php echo $row['ProductPrice'];?></td>
-<td><?php echo $row['ProductPrice'];?></td>
-<td><?php echo $row['PostingDate'];?></td>
+<td><?php echo $row['Fuel_Station'];?></td>
+<td><?php echo $row['Fuel_Type'];?></td>
+<td><?php echo $row['Fuel_Quantity'];?></td>
 <td>
-<a href="manage-request.php?del=<?php echo base64_encode($row['id'].$rno);?>" data-toggle="tooltip" data-original-title="Cancel" onclick="return confirm('Do you really want to cancel?');"> <i class="ti-close txt-danger"></i> </a>                
+<a href="manage-request.php?del=<?php echo base64_encode($row['Request_ID'].$rno);?>" data-toggle="tooltip" data-original-title="Cancel" onclick="return confirm('Do you really want to cancel?');"> <i class="ti-close txt-danger"></i> </a>                
 </td>
 </tr>
 <?php 

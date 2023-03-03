@@ -8,15 +8,15 @@ if (strlen($_SESSION['aid']==0)) {
 // Add product Code
 if(isset($_POST['submit']))
 {
-     
-    $GivenQuota=$_POST['givenQuota'];   
-    $IssueDate=$_POST['issueDate'];
+    
+    $Token_ID=$_POST['tokenId'];   
+    $GivenQuota=$_POST['givenQuota']; 
     $EstiTime=$_POST['estiTime'];
     $VehicleNo=$_POST['vehicleNo'];
     $FuelType=$_POST['fuelType']; 
     $Issued_Quantity=$_POST['issuedQuantity'];
     (int)$RemainFuelQuota = $GivenQuota - $Issued_Quantity;
-    $query=mysqli_query($con,"insert into tbltoken(Given_Quota,Remain_Fuel_Quota,Vehicle_No,Fuel_type,Issued_Quantity,Esti_Time) values('$GivenQuota','$RemainFuelQuota','$VehicleNo','$FuelType','$Issued_Quantity','$EstiTime')");
+    $query=mysqli_query($con,"insert into tbltoken(Token_ID,Given_Quota,Remain_Fuel_Quota,Vehicle_No,Fuel_type,Issued_Quantity,Esti_Time) values('$Token_ID','$GivenQuota','$RemainFuelQuota','$VehicleNo','$FuelType','$Issued_Quantity','$EstiTime')");
 //Getting Post Values
 
 if($query){
@@ -79,6 +79,14 @@ include_once('includes/sidebar.php');
 <div class="col-sm">
 <form class="needs-validation" method="post" novalidate>
           
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Token Id</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Token Id" name="tokenId" required>
+<div class="invalid-feedback">Please provide a valid Token Id.</div>
+</div>
+</div> 
+
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Vehicle Number</label>

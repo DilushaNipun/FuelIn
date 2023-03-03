@@ -13,7 +13,7 @@ $cid=substr(base64_decode($_GET['catid']),0,-5);
 $catname=$_POST['category']; 
 $catcode=$_POST['categorycode'];   
 $query=mysqli_query($con,"update tblcategory set CategoryName='$catname',CategoryCode='$catcode' where id='$cid'"); 
-echo "<script>alert('Category updated successfully.');</script>";   
+echo "<script>alert('Fuel Type updated successfully.');</script>";   
 echo "<script>window.location.href='manage-categories.php'</script>";
 }
 ?>
@@ -23,7 +23,7 @@ echo "<script>window.location.href='manage-categories.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Edit Category</title>
+    <title>Edit Fuel Type</title>
     <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@ include_once('includes/sidebar.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Category</a></li>
+<li class="breadcrumb-item"><a href="#">Fuel Type</a></li>
 <li class="breadcrumb-item active" aria-current="page">Edit</li>
                 </ol>
             </nav>
@@ -56,7 +56,7 @@ include_once('includes/sidebar.php');
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Edit Category</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Edit Fuel Type</h4>
                 </div>
                 <!-- /Title -->
 
@@ -76,7 +76,7 @@ while ($row=mysqli_fetch_array($ret)) {
 ?>                                       
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Category</label>
+<label for="validationCustom03">Fuel Type</label>
 <input type="text" class="form-control" id="validationCustom03" value="<?php echo $row['CategoryName'];?>" name="category" required>
 <div class="invalid-feedback">Please provide a valid category name.</div>
 </div>
@@ -84,9 +84,9 @@ while ($row=mysqli_fetch_array($ret)) {
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Category Code</label>
+<label for="validationCustom03">Fuel type Code</label>
 <input type="text" class="form-control" id="validationCustom03" value="<?php echo $row['CategoryCode'];?>" name="categorycode" required>
-<div class="invalid-feedback">Please provide a valid category code.</div>
+<div class="invalid-feedback">Please provide a valid code.</div>
 </div>
 </div>
 <?php } ?>                                 

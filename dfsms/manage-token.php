@@ -71,11 +71,12 @@ include_once('includes/sidebar.php');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>Token Id</th>
                                                     <th>Vehicle Number</th>
                                                     <th>Fuel Type</th>
-                                                    <th>Fuel Quota Limit</th>
-                                                    <th>Remain Fuel Quota</th>
+                                                    <!-- <th>Fuel Quota Limit</th> -->
                                                     <th>Issued Quantity</th>
+                                                    <th>Remain Fuel Quota</th>                                    
                                                     <th>Token Expire Date</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -90,11 +91,12 @@ while($row=mysqli_fetch_array($query))
 ?>                                                
 <tr>
 <td><?php echo $cnt;?></td>
+<td><?php echo $row['Token_ID'];?></td>
 <td><?php echo $row['Vehicle_No'];?></td>
 <td><?php echo $row['Fuel_type'];?></td>
-<td><?php echo $row['Given_Quota'];?></td>
-<td><?php echo $row['Remain_Fuel_Quota'];?></td>
+<!-- <td><?php echo $row['Given_Quota'];?></td> -->
 <td><?php echo $row['Issued_Quantity'];?></td>
+<td><?php echo $row['Remain_Fuel_Quota'];?></td>
 <td><?php echo $row['Esti_Time'];?></td>
 
 <td>

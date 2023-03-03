@@ -9,7 +9,7 @@ if (strlen($_SESSION['aid']==0)) {
 if(isset($_GET['del'])){    
 $cmpid=substr(base64_decode($_GET['del']),0,-5);
 $query=mysqli_query($con,"delete from tblcompany where id='$cmpid'");
-echo "<script>alert('Company record deleted.');</script>";   
+echo "<script>alert('Station record deleted.');</script>";   
 echo "<script>window.location.href='manage-companies.php'</script>";
 }
 
