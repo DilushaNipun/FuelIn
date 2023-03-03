@@ -43,8 +43,8 @@ include_once('includes/sidebar.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Payment</a></li>
-<li class="breadcrumb-item active" aria-current="page">Manage</li>
+<li class="breadcrumb-item"><a href="#">Payments</a></li>
+<li class="breadcrumb-item active" aria-current="page">View</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -54,7 +54,7 @@ include_once('includes/sidebar.php');
 
                 <!-- Title -->
 <div class="hk-pg-header">
- <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Payment</h4>
+ <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>View Payments</h4>
 </div>
                 <!-- /Title -->
                 <!-- Row -->
@@ -68,31 +68,29 @@ include_once('includes/sidebar.php');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Token ID</th>
                                                     <th>Customer NIC</th>
                                                     <th>Customer Email</th>
+                                                    <th>Token ID</th>
                                                     <th>Payment Amount</th>
-                                                    <th>Payment Date</th>
-                                                    <th>Action</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
 <?php
 $rno=mt_rand(10000,99999);  
-$query=mysqli_query($con,"select * from tblproducts");
+$query=mysqli_query($con,"select * from tblpayments");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {    
 ?>                                                
 <tr>
 <td><?php echo $cnt;?></td>
-<td><?php echo $row['CompanyName'];?></td>
-<td><?php echo $row['CategoryName'];?></td>
-<td><?php echo $row['ProductPrice'];?></td>
-<td><?php echo $row['ProductPrice'];?></td>
-<td><?php echo $row['PostingDate'];?></td>
+<td><?php echo $row['Customer_NIC'];?></td>
+<td><?php echo $row['Customer_Email'];?></td>
+<td><?php echo $row['Token_ID'];?></td>
+<td><?php echo $row['Payment_Amount'];?></td>
 <td>
-<a href="manage-request.php?del=<?php echo base64_encode($row['id'].$rno);?>" data-toggle="tooltip" data-original-title="Cancel" onclick="return confirm('Do you really want to cancel?');"> <i class="glyphicon glyphicon-envelope txt-danger"></i> </a>                
+<!-- <a href="manage-request.php?del=<?php echo base64_encode($row['id'].$rno);?>" data-toggle="tooltip" data-original-title="Cancel" onclick="return confirm('Do you really want to cancel?');"> <i class="glyphicon glyphicon-envelope txt-danger"></i> </a>                 -->
 </td>
 </tr>
 <?php 

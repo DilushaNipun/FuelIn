@@ -9,17 +9,17 @@ if (strlen($_SESSION['aid']==0)) {
 if(isset($_POST['submit']))
 {
 //Getting Post Values
-$catname=$_POST['category']; 
-$company=$_POST['company'];   
-$pname=$_POST['productname'];
-$pprice=$_POST['productprice'];
-$query=mysqli_query($con,"insert into tblproducts(CategoryName,CompanyName,ProductName,ProductPrice) values('$catname','$company','$pname','$pprice')"); 
+$Customer_NIC=$_POST['customerNIC']; 
+$Customer_Email=$_POST['customerEmail'];   
+$Token_ID=$_POST['tokenID'];
+$Payment_Amount=$_POST['paymentAmount'];
+$query=mysqli_query($con,"insert into tblpayments(Customer_NIC,Customer_Email,Token_ID,Payment_Amount) values('$Customer_NIC','$Customer_Email','$Token_ID','$Payment_Amount')"); 
 if($query){
-echo "<script>alert('Request added successfully.');</script>";   
-echo "<script>window.location.href='add-request.php'</script>";
+echo "<script>alert('Payment successfull.');</script>";   
+echo "<script>window.location.href='manage-payment.php'</script>";
 } else{
 echo "<script>alert('Something went wrong. Please try again.');</script>";   
-echo "<script>window.location.href='add-request.php'</script>";    
+echo "<script>window.location.href='add-payment.php'</script>";    
 }
 }
 
@@ -91,7 +91,7 @@ include_once('includes/sidebar.php');
 </div>
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Customer Email</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Mobile Number" name="email" required>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Email" name="customerEmail" required>
 <div class="invalid-feedback">Please provide a valid email.</div>
 </div>
 </div>
@@ -103,7 +103,7 @@ include_once('includes/sidebar.php');
 </div>
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Payment Amount</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Payment Amount" name="amount" required>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Payment Amount" name="paymentAmount" required>
 <div class="invalid-feedback">Please provide a valid email.</div>
 </div>
 </div>
