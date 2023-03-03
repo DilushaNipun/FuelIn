@@ -18,7 +18,7 @@ if(isset($_GET['del'])){
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Manage Request</title>
+    <title>Manage Payments</title>
     <!-- Data Table CSS -->
     <link href="vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -43,7 +43,7 @@ include_once('includes/sidebar.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Fuel Request</a></li>
+<li class="breadcrumb-item"><a href="#">Payment</a></li>
 <li class="breadcrumb-item active" aria-current="page">Manage</li>
                 </ol>
             </nav>
@@ -54,11 +54,9 @@ include_once('includes/sidebar.php');
 
                 <!-- Title -->
 <div class="hk-pg-header">
- <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Fuel Request</h4>
- 
+ <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Payment</h4>
 </div>
                 <!-- /Title -->
-
                 <!-- Row -->
                 <div class="row">
                     <div class="col-xl-12">
@@ -70,13 +68,12 @@ include_once('includes/sidebar.php');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Fuel Station</th>
-                                                    <th>Fuel Type</th>
-                                                    <th>Fuel Quantity</th>
-                                                    <th>Status</th>
-                                                    <th>Posting Date</th>
+                                                    <th>Token ID</th>
+                                                    <th>Customer NIC</th>
+                                                    <th>Customer Email</th>
+                                                    <th>Payment Amount</th>
+                                                    <th>Payment Date</th>
                                                     <th>Action</th>
-                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -95,7 +92,7 @@ while($row=mysqli_fetch_array($query))
 <td><?php echo $row['ProductPrice'];?></td>
 <td><?php echo $row['PostingDate'];?></td>
 <td>
-<a href="manage-request.php?del=<?php echo base64_encode($row['id'].$rno);?>" data-toggle="tooltip" data-original-title="Cancel" onclick="return confirm('Do you really want to cancel?');"> <i class="ti-close txt-danger"></i> </a>                
+<a href="manage-request.php?del=<?php echo base64_encode($row['id'].$rno);?>" data-toggle="tooltip" data-original-title="Cancel" onclick="return confirm('Do you really want to cancel?');"> <i class="glyphicon glyphicon-envelope txt-danger"></i> </a>                
 </td>
 </tr>
 <?php 

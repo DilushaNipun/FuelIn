@@ -85,31 +85,28 @@ include_once('includes/sidebar.php');
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Customer Name</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Customer Name" name="customername" required>
-<div class="invalid-feedback">Please provide a valid customer name.</div>
+<label for="validationCustom03">Customer NIC</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Customer NIC" name="customerNIC" required>
+<div class="invalid-feedback">Please provide a valid customer NIC.</div>
 </div>
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Customer Mobile Number</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Mobile Number" name="mobileno" required>
-<div class="invalid-feedback">Please provide a valid mobile number.</div>
+<label for="validationCustom03">Customer Email</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Mobile Number" name="email" required>
+<div class="invalid-feedback">Please provide a valid email.</div>
 </div>
 </div>
-
 <div class="form-row">
 <div class="col-md-6 mb-10">
-    <label for="validationCustom03">Payment Mode</label>
-<div class="custom-control custom-radio mb-10">
-<input type="radio" class="custom-control-input" id="customControlValidation2" name="paymentmode" value="cash" required>
-<label class="custom-control-label" for="customControlValidation2">Cash</label>
+<label for="validationCustom03">Token ID</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Token ID" name="tokenID" required>
+<div class="invalid-feedback">Please provide a valid customer NIC.</div>
 </div>
-<div class="custom-control custom-radio mb-10">
-<input type="radio" class="custom-control-input" id="customControlValidation3" name="paymentmode" value="card" required>
-<label class="custom-control-label" for="customControlValidation3">Card</label>
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Payment Amount</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Payment Amount" name="amount" required>
+<div class="invalid-feedback">Please provide a valid email.</div>
 </div>
 </div>
-</div>
-
 <button class="btn btn-primary" type="submit" name="submit">Submit</button>
 </form>
 </div>

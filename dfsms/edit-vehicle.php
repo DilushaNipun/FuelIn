@@ -8,18 +8,23 @@ if (strlen($_SESSION['aid']==0)) {
 // Edit product Code
 if(isset($_POST['update']))
 {
-$pid=substr(base64_decode($_GET['compid']),0,-5);    
-//Getting Post Values
-$catname=$_POST['category']; 
-$company=$_POST['company'];   
-// $pname=$_POST['productname'];
-$pprice=$_POST['productprice'];
-$query=mysqli_query($con,"update tblproducts set CategoryName='$catname',CompanyName='$company',ProductPrice='$pprice' where id='$pid'"); 
-echo "<script>alert('Order updated successfully.');</script>";   
-echo "<script>window.location.href='manage-products.php'</script>";
+$cmpid=substr(base64_decode($_GET['compid']),0,-5);
+//Getting Post Values  
+$Fuel_Quota=$_POST['fuelQuota'];   
+$Fuel_Type=$_POST['fuelType'];   
+$Vehi_Type=$_POST['vehType'];   
+$Customer_NIC=$_POST['customerNIC'];
+$query=mysqli_query($con,"update tblvehicle set Fuel_Quota='$Fuel_Quota',Fuel_Type='$Fuel_Type',Vehi_Type='$Vehi_Type',Customer_NIC='$Customer_NIC' where Vehi_No='$cmpid'"); 
 
+if($query){
+    echo "<script>alert('vehicle updated successfully.');</script>";   
+    echo "<script>window.location.href='manage-vehicle.php'</script>";
+    } else{
+    echo "<script>alert('Something went wrong. Please try again.');</script>";   
+    echo "<script>window.location.href='edit-vehicle.php'</script>";    
+    }
+    
 }
-
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +32,7 @@ echo "<script>window.location.href='manage-products.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Add Vehicle</title>
+    <title>Edit Vehicle</title>
     <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
@@ -43,9 +48,6 @@ echo "<script>window.location.href='manage-products.php'</script>";
 <?php include_once('includes/navbar.php');
 include_once('includes/sidebar.php');
 ?>
-       
-
-
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->
         <!-- Main Content -->
@@ -76,16 +78,39 @@ include_once('includes/sidebar.php');
 <div class="col-sm">
 <form class="needs-validation" method="post" novalidate>
 <?php
-$pid=substr(base64_decode($_GET['compid']),0,-5);
-$query=mysqli_query($con,"select * from tblproducts where id='$pid'");
+$cmpid=substr(base64_decode($_GET['compid']),0,-5);
+$query=mysqli_query($con,"select * from tblvehicle where Vehi_No='$cmpid'");
 while($result=mysqli_fetch_array($query))
 {    
-?>                                       
+?> 
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Vehicle Number</label>
+<input type="text" class="form-control" id="validationCustom03" value="<?php echo $result['Vehi_No'];?>" name="VehiNo" disabled="disabled" required>
+<div class="invalid-feedback">Please provide a valid Vehicle Number.</div>
+</div>
+</div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Vehicle Type</label>
+<select class="form-control custom-select" name="vehType" required>
+ <option value="<?php echo $result['Vehi_Type'];?>"><?php echo $result['Vehi_Type'];?></option>
+    <option value="Car">Car</option>
+	<option value="Van">Van</option>
+	<option value="Heavy Vehicle">Heavy Vehicle</option>
+	<option value="Motor Bicycle">Motor Bicycle</option>
+	<option value="Three Wheeler">Three Wheeler</option>
+</select>
+<div class="invalid-feedback">Please select a Fuel Type.</div>
+</div>
+</div>
+
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Fuel Type</label>
- <select class="form-control custom-select" name="category" required>
-<option value="<?php echo $result['CategoryName'];?>"><?php echo $catname=$result['CategoryName'];?></option>
+<select class="form-control custom-select" name="fuelType" required>
+ <option value="<?php echo $result['Fuel_Type'];?>"><?php echo $result['Fuel_Type'];?></option>
 <?php
 $ret=mysqli_query($con,"select CategoryName from tblcategory");
 while($row=mysqli_fetch_array($ret))
@@ -93,40 +118,26 @@ while($row=mysqli_fetch_array($ret))
 <option value="<?php echo $row['CategoryName'];?>"><?php echo $row['CategoryName'];?></option>
 <?php } ?>
 </select>
-<div class="invalid-feedback">Please select a fuel.</div>
+<div class="invalid-feedback">Please select a Fuel Type.</div>
 </div>
 </div>
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Station</label>
- <select class="form-control custom-select" name="company" required>
-<option value="<?php echo $result['CompanyName'];?>"><?php echo $result['CompanyName'];?></option>
-<?php
-$ret=mysqli_query($con,"select CompanyName from tblcompany");
-while($rw=mysqli_fetch_array($ret))
-{?>
-<option value="<?php echo $rw['CompanyName'];?>"><?php echo $rw['CompanyName'];?></option>
-<?php } ?>
-</select>
-<div class="invalid-feedback">Please select a station.</div>
+<label for="validationCustom03">Fuel Quota Limit</label>
+<input type="text" class="form-control" id="validationCustom03" value="<?php echo $result['Fuel_Quota'];?>" name="fuelQuota" required>
+<div class="invalid-feedback">Please provide a valid Quota Limit.</div>
 </div>
 </div>
- <!-- <div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03">Order Id</label>
-<input type="text" class="form-control" id="validationCustom03" value="<?php echo $result['ProductName'];?>" name="productname" required>
-<div class="invalid-feedback">Please provide a valid product name.</div>
-</div>
-</div>    -->
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Fuel Price / Litre</label>
-<input type="text" class="form-control" id="validationCustom03" value="<?php echo $result['ProductPrice'];?>" name="productprice" required>
-<div class="invalid-feedback">Please provide a valid price.</div>
+<label for="validationCustom03">Customer NIC</label>
+<input type="text" class="form-control" id="validationCustom03" value="<?php echo $result['Customer_NIC'];?>" name="customerNIC" required>
+<div class="invalid-feedback">Please provide a valid Customer NIC.</div>
 </div>
 </div>
+
 <?php } ?>
 <a href="manage-vehicle.php"><button class="btn btn-secondary" type="button" name="back">Back</button></a>
 <button class="btn btn-primary" type="submit" name="update">Update</button>
