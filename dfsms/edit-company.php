@@ -12,7 +12,7 @@ $cmpid=substr(base64_decode($_GET['compid']),0,-5);
 //Getting Post Values
 $cname=$_POST['companyname'];   
 $query=mysqli_query($con,"update  tblcompany set  CompanyName='$cname' where id='$cmpid'"); 
-echo "<script>alert('Company update successfully.');</script>";   
+echo "<script>alert('Station update successfully.');</script>";   
 echo "<script>window.location.href='manage-companies.php'</script>";
 }
 

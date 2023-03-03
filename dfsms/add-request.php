@@ -9,11 +9,11 @@ if (strlen($_SESSION['aid']==0)) {
 if(isset($_POST['submit']))
 {
 //Getting Post Values
-$Request_ID=$_POST['RequestID']; 
+ 
 $Fuel_Station=$_POST['FuelStation'];   
 $Fuel_Type=$_POST['FuelType'];
 $Fuel_Quantity=$_POST['FuelQuantity'];
-$query=mysqli_query($con,"insert into tblrequest(Request_ID,Fuel_Station,Fuel_Type,ProductPrice) values('$Request_ID','$Fuel_Station','$Fuel_Type','$Fuel_Quantity')"); 
+$query=mysqli_query($con,"insert into tblrequest(Fuel_Station,Fuel_Type,Fuel_Quantity) values('$Fuel_Station','$Fuel_Type','$Fuel_Quantity')"); 
 if($query){
 echo "<script>alert('Request added successfully.');</script>";   
 echo "<script>window.location.href='add-request.php'</script>";
@@ -85,7 +85,7 @@ include_once('includes/sidebar.php');
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Fuel Station</label>
- <select class="form-control custom-select" name="company" required>
+ <select class="form-control custom-select" name="FuelStation" required>
 <option value="">Select Station</option>
 <?php
 $ret=mysqli_query($con,"select CompanyName from tblcompany");
@@ -101,7 +101,7 @@ while($row=mysqli_fetch_array($ret))
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Fuel Type</label>
- <select class="form-control custom-select" name="category" required>
+ <select class="form-control custom-select" name="FuelType" required>
 <option value="">Select Fuel Type</option>
 <?php
 $ret=mysqli_query($con,"select CategoryName from tblcategory");
@@ -117,7 +117,7 @@ while($row=mysqli_fetch_array($ret))
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Fuel Quantity</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Quantity" name="productprice" required>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Quantity" name="FuelQuantity" required>
 <div class="invalid-feedback">Please enter fuel quantity.</div>
 </div>
 </div>
