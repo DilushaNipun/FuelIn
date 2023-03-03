@@ -71,7 +71,8 @@ include_once('includes/sidebar.php');
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Station Name</th>
-                                                    <th>Posting Date</th>
+                                                    <th>Location</th>
+                                                    <th>Maximum Stock</th>
                                                     <th>Action</th>
                                                     
                                                 </tr>
@@ -87,7 +88,8 @@ while($row=mysqli_fetch_array($query))
 <tr>
 <td><?php echo $cnt;?></td>
 <td><?php echo $row['CompanyName'];?></td>
-<td><?php echo $row['PostingDate'];?></td>
+<td><?php echo $row['Location'];?></td>
+<td><?php echo $row['Max_Stock'];?></td>
 <td>
 <a href="edit-company.php?compid=<?php echo base64_encode($row['id'].$rno);?>" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
 <a href="manage-companies.php?del=<?php echo base64_encode($row['id'].$rno);?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="icon-trash txt-danger"></i> </a>
