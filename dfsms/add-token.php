@@ -45,7 +45,7 @@ echo "<script>window.location.href='add-token.php'</script>";
 	<div class="hk-wrapper hk-vertical-nav">
 
 <!-- Top Navbar -->
-<?php include_once('includes/navbar.php');
+<?php include_once('includes/navbar-Station.php');
 include_once('includes/sidebar-station.php');
 ?>
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
