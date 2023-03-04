@@ -5,25 +5,20 @@ include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
-// Add Station Code
-if(isset($_POST['submit']))
+// Add company Code
+if(isset($_POST['update']))
 {
+ $adminid=$_SESSION['aid'];   
 //Getting Post Values
-$Vehi_No=$_POST['VehiNo'];   
-$Fuel_Quota=$_POST['fuelQuota'];   
-$Fuel_Type=$_POST['fuelType'];   
-$Vehi_Type=$_POST['vehType'];   
-$Customer_NIC=$_POST['customerNIC'];
-$query=mysqli_query($con,"insert into tblvehicle(Vehi_No,Vehi_Type,Fuel_Type,Fuel_Quota,Customer_NIC) values('$Vehi_No','$Vehi_Type','$Fuel_Type','$Fuel_Quota','$Customer_NIC')"); 
+$adminname=$_POST['adminname'];  
+$emailid=$_POST['emailid'];  
+$mobileno=$_POST['mobilenumber'];   
+$query=mysqli_query($con,"update tbladmin set AdminName='$adminname',MobileNumber='$mobileno',Email='$emailid' where id='$adminid'"); 
 if($query){
-echo "<script>alert('Vehicle added successfully.');</script>";   
-echo "<script>window.location.href='manage-vehicle.php'</script>";
-} else{
-echo "<script>alert('Something went wrong. Please try again.');</script>";   
-echo "<script>window.location.href='add-vehicle.php'</script>";    
+echo "<script>alert('Admin details updated successfully.');</script>";   
+echo "<script>window.location.href='profile.php'</script>";
+} 
 }
-}
-//  station Add
 
     ?>
 <!DOCTYPE html>
@@ -32,13 +27,15 @@ echo "<script>window.location.href='add-vehicle.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Add Vehicle</title>
+    <title>Admin profile</title>
     <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+    
+    
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-vertical-nav">
 
@@ -46,15 +43,21 @@ echo "<script>window.location.href='add-vehicle.php'</script>";
 <?php include_once('includes/navbar-customer.php');
 include_once('includes/sidebar-customer.php');
 ?>
+       
+
+
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->
+
+
+
         <!-- Main Content -->
         <div class="hk-pg-wrapper">
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Vehicle</a></li>
-<li class="breadcrumb-item active" aria-current="page">Add</li>
+<li class="breadcrumb-item"><a href="#">Profile</a></li>
+<li class="breadcrumb-item active" aria-current="page">Consumer</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -63,7 +66,7 @@ include_once('includes/sidebar-customer.php');
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Add Vehicle</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Update Consumer Profile</h4>
                 </div>
                 <!-- /Title -->
 
@@ -75,63 +78,63 @@ include_once('includes/sidebar-customer.php');
 <div class="row">
 <div class="col-sm">
 <form class="needs-validation" method="post" novalidate>
-                                       
-<div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03">Vehicle Number</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Vehicle Number" name="VehiNo" required>
-<div class="invalid-feedback">Please provide a valid Vehicle name.</div>
-</div>
-</div>
+<?php 
+//Getting admin name
+$adminid=$_SESSION['aid'];
+$query=mysqli_query($con,"select * from tbladmin where id='$adminid'");
+while($row=mysqli_fetch_array($query)){
+?>   
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Vehicle Type</label>
-<select class="form-control custom-select" name="vehType" required>
-    <option value="">Select Vehicle Type</option>
-	<option value="Car">Car</option>
-	<option value="Van">Van</option>
-	<option value="Heavy Vehicle">Heavy Vehicle</option>
-	<option value="Motor Bicycle">Motor Bicycle</option>
-	<option value="Three Wheeler">Three Wheeler</option>
-</select>
-<div class="invalid-feedback">Please select a Vehicle Type.</div>
+<label for="validationCustom03"> Reg. Date</label>
+<?php echo $row['AdminRegdate'];?>
 </div>
 </div>
-
+<?php if($row['UpdationDate']!=""){?>
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Fuel Type</label>
- <select class="form-control custom-select" name="fuelType" required>
-<option value="">Select Fuel Type</option>
-<?php
-$ret=mysqli_query($con,"select CategoryName from tblcategory");
-while($row=mysqli_fetch_array($ret))
-{?>
-<option value="<?php echo $row['CategoryName'];?>"><?php echo $row['CategoryName'];?></option>
+<label for="validationCustom03"> Last Updation Date</label>
+<?php echo $row['UpdationDate'];?>
+</div>
+</div>
 <?php } ?>
-</select>
-<div class="invalid-feedback">Please select a Fuel Type.</div>
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03"> Name</label>
+<input type="text" class="form-control" id="validationCustom03" value="<?php echo $row['AdminName'];?>" name="adminname" required>
+<div class="invalid-feedback">Please provide a valid  name.</div>
 </div>
 </div>
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Customer NIC</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Customer NIC" name="customerNIC" required>
-<div class="invalid-feedback">Please provide a valid NIC.</div>
+<label for="validationCustom03"> Username</label>
+<input type="text" class="form-control" id="validationCustom03" value="<?php echo $row['UserName'];?>" name="username" readonly>
 </div>
 </div>
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Fuel Quota</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Quota" name="fuelQuota" required>
-<div class="invalid-feedback">Please provide a valid fuel quota.</div>
+<label for="validationCustom03">Email id</label>
+<input type="text" class="form-control" id="validationCustom03" value="<?php echo $row['Email'];?>" name="emailid" required>
+<div class="invalid-feedback">Please provide a valid  Email id.</div>
 </div>
 </div>
 
-<button class="btn btn-primary" type="submit" name="submit">Submit</button>
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03"> Mobile Number</label>
+<input type="text" class="form-control" id="validationCustom03" value="<?php echo $row['MobileNumber'];?>" name="mobilenumber" required>
+<div class="invalid-feedback">Please provide a valid  mobile number.</div>
+</div>
+</div>
+
+
+
+<?php } ?>
+                                 
+<button class="btn btn-primary" type="submit" name="update">Update</button>
 </form>
 </div>
 </div>
@@ -140,12 +143,17 @@ while($row=mysqli_fetch_array($ret))
 </div>
 </div>
 </div>
+
+
             <!-- Footer -->
 <?php include_once('includes/footer.php');?>
             <!-- /Footer -->
+
         </div>
         <!-- /Main Content -->
+
     </div>
+
     <script src="vendors/jquery/dist/jquery.min.js"></script>
     <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -157,6 +165,7 @@ while($row=mysqli_fetch_array($ret))
     <script src="dist/js/toggle-data.js"></script>
     <script src="dist/js/init.js"></script>
     <script src="dist/js/validation-data.js"></script>
+
 </body>
 </html>
 <?php } ?>

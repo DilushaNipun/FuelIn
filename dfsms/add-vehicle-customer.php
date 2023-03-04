@@ -17,10 +17,10 @@ $Customer_NIC=$_POST['customerNIC'];
 $query=mysqli_query($con,"insert into tblvehicle(Vehi_No,Vehi_Type,Fuel_Type,Fuel_Quota,Customer_NIC) values('$Vehi_No','$Vehi_Type','$Fuel_Type','$Fuel_Quota','$Customer_NIC')"); 
 if($query){
 echo "<script>alert('Vehicle added successfully.');</script>";   
-echo "<script>window.location.href='manage-vehicle.php'</script>";
+echo "<script>window.location.href='manage-vehicle - customer.php'</script>";
 } else{
 echo "<script>alert('Something went wrong. Please try again.');</script>";   
-echo "<script>window.location.href='add-vehicle.php'</script>";    
+echo "<script>window.location.href='add-vehicle-customer.php'</script>";    
 }
 }
 //  station Add
