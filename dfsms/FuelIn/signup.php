@@ -142,98 +142,69 @@ $conn->close();
     <!-- Register Section End -->
 
     <!-- Classes Section Begin -->
-    <section class="classes-section classes-page spad">
+    <section class="classes-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>UNLIMITED CLASSES</h2>
+                        <h2>UNLIMITED SERVICES</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
+            <div class="row classes-slider owl-carousel">
+                <div class="col-lg-4">
                     <div class="single-class-item set-bg" data-setbg="img/classes/classes-1.jpg">
                         <div class="si-text">
-                            <h4>Yoga</h4>
-                            <span><i class="fa fa-user"></i> Ryan Knight</span>
+                            <h4>Oil Mines</h4>
+                            <!-- <span><i class="fa fa-user"></i> Ryan Knight</span> -->
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
                     <div class="single-class-item set-bg" data-setbg="img/classes/classes-4.jpg">
                         <div class="si-text">
-                            <h4>Karate</h4>
-                            <span><i class="fa fa-user"></i> Kevin McCormick</span>
+                            <h4>Fuel Transport</h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4">
                     <div class="single-class-item set-bg" data-setbg="img/classes/classes-2.jpg">
                         <div class="si-text">
-                            <h4>Running</h4>
-                            <span><i class="fa fa-user"></i> Randy Rivera</span>
+                            <h4>Fuel</h4>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
                     <div class="single-class-item set-bg" data-setbg="img/classes/classes-5.jpg">
                         <div class="si-text">
-                            <h4>Dance</h4>
-                            <span><i class="fa fa-user"></i> Russell Lane</span>
+                            <h4>Fuel Bowsers</h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4">
                     <div class="single-class-item set-bg" data-setbg="img/classes/classes-3.jpg">
                         <div class="si-text">
-                            <h4>Personal Training</h4>
-                            <span><i class="fa fa-user"></i> Cole Robertson</span>
+                            <h4>Fuel Stations</h4>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
                     <div class="single-class-item set-bg" data-setbg="img/classes/classes-6.jpg">
                         <div class="si-text">
-                            <h4>Weight Loss</h4>
-                            <span><i class="fa fa-user"></i> Ryan Scott</span>
+                            <h4>Oil Mines</h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4">
                     <div class="single-class-item set-bg" data-setbg="img/classes/classes-7.jpg">
                         <div class="si-text">
-                            <h4>Box</h4>
-                            <span><i class="fa fa-user"></i> Chester Bowen</span>
+                            <h4>Fuel Pump</h4>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
                     <div class="single-class-item set-bg" data-setbg="img/classes/classes-8.jpg">
                         <div class="si-text">
-                            <h4>Cardio</h4>
-                            <span><i class="fa fa-user"></i> Jorge Fernandez</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-class-item set-bg" data-setbg="img/classes/classes-8.jpg">
-                        <div class="si-text">
-                            <h4>Crossfit</h4>
-                            <span><i class="fa fa-user"></i> Chester Bowen</span>
+                            <h4>Fuel Ships</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Classes Section End -->
 
-    <!-- Classes Timetable Section Begin -->
-    
-    <!-- Trainer Table Schedule Section End -->
-
-    <!-- Footer Banner Section Begin -->
     <section class="footer-banner">
         <div class="container-fluid">
             <div class="row">

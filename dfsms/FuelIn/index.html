@@ -355,41 +355,46 @@
 
 
     <!-- Register Section Begin -->
-    <section class="register-section spad">
+    <section class="register-section classes-page spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="register-text">
-                        <div class="section-title">
-                            <h2>Register Now</h2>
-                            <p>Register your vehicle here....</p>
-                        </div>
-                        <form action="#" class="register-form">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label for="name">First Name</label>
-                                    <input type="text" id="name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="email">Your email address</label>
-                                    <input type="text" id="email">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="last-name">Last Name</label>
-                                    <input type="text" id="last-name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="mobile">Mobile No*</label>
-                                    <input type="text" id="mobile">
-                                </div>
+            <div class="classes-page-text">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="register-text">
+                            <div class="section-title">
+                                <h2>Register Now</h2>
                             </div>
-                            <button type="submit" class="register-btn">Get Started</button>
-                        </form>
+                            <form class="register-form" action="signup.php" method="post" novalidate>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="name">User Name*</label>
+                                        <input type="text" class="form-control" id="validationCustom03" placeholder="User Name" id="userName" name="userName" required>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="email">Your email address*</label>
+                                        <input type="text" class="form-control" id="validationCustom03" placeholder="User Email" name="email" required>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="last-name">NIC*</label>
+                                        <input type="text" class="form-control" id="validationCustom03" placeholder="User NIC" name="nic" required>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="mobile">Mobile No*</label>
+                                        <input type="text" class="form-control" id="validationCustom03" placeholder="Mobile Number" name="mobile" required>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="password">Password*</label>
+                                        <input type="text" class="form-control" id="validationCustom03" placeholder="Password" name="password" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="register-btn">Get Started</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="register-pic">
-                        <img src="img/register-pic.jpg" alt="">
+                    <div class="col-lg-4">
+                        <div class="register-pic">
+                            <img src="img/register-pic.jpg" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
