@@ -10,7 +10,8 @@ $Email = $conn->real_escape_string($_POST['email']);
 $MobileNumber = $conn->real_escape_string($_POST['mobile']);
 $NIC = $conn->real_escape_string($_POST['nic']);
 $Password = $conn->real_escape_string($_POST['password']);
-$hashed_password = password_hash($Password, PASSWORD_DEFAULT);
+$hashed_password=md5($_POST['password']);
+//$hashed_password = password_hash($Password, PASSWORD_DEFAULT);
 
 $query = "INSERT into tbladmin(AdminName,UserName,Email,MobileNumber,NIC,Password) VALUES('" . $AdminName . "','" . $UserName . "','" . $Email . "','" . $MobileNumber . "','" . $NIC ."','" . $hashed_password ."')";
 $success = $conn->query($query);

@@ -107,6 +107,23 @@ include_once('includes/sidebar-customer.php');
 <div class="invalid-feedback">Please provide a valid email.</div>
 </div>
 </div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+    <label for="validationCustom03">Payment Mode</label>
+<div class="custom-control custom-radio mb-10">
+<input type="radio" class="custom-control-input" id="customControlValidation2" name="paymentmode" value="cash" required>
+<label class="custom-control-label" for="customControlValidation2">Cash</label>
+</div>
+<div class="custom-control custom-radio mb-10">
+<input type="radio" class="custom-control-input" id="customControlValidation3" name="paymentmode" value="card" required>
+<label class="custom-control-label" for="customControlValidation3">Card</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 <button class="btn btn-primary" type="submit" name="submit">Submit</button>
 </form>
 </div>
