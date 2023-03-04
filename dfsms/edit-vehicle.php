@@ -45,8 +45,8 @@ if($query){
 	<div class="hk-wrapper hk-vertical-nav">
 
 <!-- Top Navbar -->
-<?php include_once('includes/navbar.php');
-include_once('includes/sidebar.php');
+<?php include_once('includes/navbar-Station.php');
+include_once('includes/sidebar-station.php');
 ?>
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->

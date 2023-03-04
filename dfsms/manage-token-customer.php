@@ -11,7 +11,7 @@ if(isset($_GET['del'])){
     $pid=substr(base64_decode($_GET['del']),0,-5);
     $query=mysqli_query($con,"delete from tbltoken where Token_Id='$pid'");
     echo "<script>alert('Token record deleted.');</script>";   
-    echo "<script>window.location.href='manage-token.php'</script>";
+    echo "<script>window.location.href='manage-token-customer.php'</script>";
     }
 
 ?>
