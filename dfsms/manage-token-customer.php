@@ -5,13 +5,14 @@ include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
-// Code for deletion       
+
+    // Code for deletion       
 if(isset($_GET['del'])){    
-$cmpid=substr(base64_decode($_GET['del']),0,-5);
-$query=mysqli_query($con,"delete from tblvehicle where Vehi_No='$cmpid'");
-echo "<script>alert('Vehicle record deleted.');</script>";   
-echo "<script>window.location.href='manage-vehicle - customer.php'</script>";
-}
+    $pid=substr(base64_decode($_GET['del']),0,-5);
+    $query=mysqli_query($con,"delete from tbltoken where Token_Id='$pid'");
+    echo "<script>alert('Token record deleted.');</script>";   
+    echo "<script>window.location.href='manage-token.php'</script>";
+    }
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +20,7 @@ echo "<script>window.location.href='manage-vehicle - customer.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Manage Vehicles</title>
+    <title>Manage Token</title>
     <!-- Data Table CSS -->
     <link href="vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -44,18 +45,21 @@ include_once('includes/sidebar-customer.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Vehicles</a></li>
+<li class="breadcrumb-item"><a href="#">Token</a></li>
 <li class="breadcrumb-item active" aria-current="page">Manage</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
+
             <!-- Container -->
             <div class="container">
+
                 <!-- Title -->
 <div class="hk-pg-header">
- <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Vehicles</h4>
+ <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Token</h4>
                 </div>
                 <!-- /Title -->
+
                 <!-- Row -->
                 <div class="row">
                     <div class="col-xl-12">
@@ -67,33 +71,37 @@ include_once('includes/sidebar-customer.php');
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>Token Id</th>
                                                     <th>Vehicle Number</th>
-                                                    <th>Vehicle Type</th>
                                                     <th>Fuel Type</th>
-                                                    <th>Fuel Quota</th>
-                                                    <th>Customer NIC</th>
+                                                    <!-- <th>Fuel Quota Limit</th> -->
+                                                    <th>Issued Quantity</th>
+                                                    <th>Remain Fuel Quota</th>                                    
+                                                    <th>Token Expire Date</th>
                                                     <th>Action</th>
-                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
 <?php
 $rno=mt_rand(10000,99999);  
-$query=mysqli_query($con,"select * from tblvehicle");
+$query=mysqli_query($con,"select * from tbltoken");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {    
 ?>                                                
 <tr>
 <td><?php echo $cnt;?></td>
-<td><?php echo $row['Vehi_No'];?></td>
-<td><?php echo $row['Vehi_Type'];?></td>
-<td><?php echo $row['Fuel_Type'];?></td>
-<td><?php echo $row['Fuel_Quota'];?></td>
-<td><?php echo $row['Customer_NIC'];?></td>
+<td><?php echo $row['Token_ID'];?></td>
+<td><?php echo $row['Vehicle_No'];?></td>
+<td><?php echo $row['Fuel_type'];?></td>
+<!-- <td><?php echo $row['Given_Quota'];?></td> -->
+<td><?php echo $row['Issued_Quantity'];?></td>
+<td><?php echo $row['Remain_Fuel_Quota'];?></td>
+<td><?php echo $row['Esti_Time'];?></td>
+
 <td>
-<a href="edit-vehicle.php?compid=<?php echo base64_encode($row['Vehi_No'].$rno);?>" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
-<a href="manage-vehicle.php?del=<?php echo base64_encode($row['Vehi_No'].$rno);?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="icon-trash txt-danger"></i> </a>
+<a href="edit-token.php?pid=<?php echo base64_encode($row['Token_ID'].$rno);?>" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
+<a href="manage-token.php?del=<?php echo base64_encode($row['Token_ID'].$rno);?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="icon-trash txt-danger"></i> </a>
 </td>
 </tr>
 <?php 

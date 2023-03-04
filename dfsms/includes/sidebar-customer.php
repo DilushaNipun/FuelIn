@@ -19,10 +19,10 @@
 <li class="nav-item">
 <ul class="nav flex-column">
 <li class="nav-item">
-<a class="nav-link" href="add-vehicle.php">Add</a>
+<a class="nav-link" href="add-vehicle-customer.php">Add</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="manage-vehicle.php">Manage</a>
+<a class="nav-link" href="manage-vehicle - customer.php">Manage</a>
 </li>
 </ul>
 </li>
@@ -37,10 +37,10 @@
 <li class="nav-item">
 <ul class="nav flex-column">
 <li class="nav-item">
-<a class="nav-link" href="add-token.php">Add Token</a>
+<a class="nav-link" href="add-token-customer.php">Add Token</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="manage-token.php">Manage Token</a>
+<a class="nav-link" href="manage-token-customer.php">Manage Token</a>
 </li>
 </ul>
 </li>
@@ -56,7 +56,7 @@
 <li class="nav-item">
 <ul class="nav flex-column">
 <li class="nav-item">
-<a class="nav-link" href="add-payment.php">Make Payment</a>
+<a class="nav-link" href="add-payment-customer.php">Make Payment</a>
 </li>
 </ul>
 </li>
