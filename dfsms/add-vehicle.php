@@ -44,7 +44,7 @@ echo "<script>window.location.href='add-vehicle.php'</script>";
 
 <!-- Top Navbar -->
 <?php include_once('includes/navbar.php');
-include_once('includes/sidebar.php');
+include_once('includes/sidebar-station.php');
 ?>
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->

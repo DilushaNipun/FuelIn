@@ -15,12 +15,12 @@
 <li class="nav-item">
 <a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#cats_drp">
 <i class="ion ion-ios-water"></i>
-<span class="nav-link-text">Fuel Type</span></a>
+<span class="nav-link-text">Available Fuels</span></a>
 <ul id="cats_drp" class="nav flex-column collapse collapse-level-1">
 <li class="nav-item">
 <ul class="nav flex-column">
 <li class="nav-item">
-<a class="nav-link" href="manage-categories.php">Manage</a>
+<a class="nav-link" href="view-fuel-type.php">View</a>
 </li>
 </ul>
 </li>

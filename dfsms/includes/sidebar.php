@@ -56,11 +56,11 @@
 <ul id="request_drp" class="nav flex-column collapse collapse-level-1">
 <li class="nav-item">
 <ul class="nav flex-column">
-<li class="nav-item">
+<!-- <li class="nav-item">
 <a class="nav-link" href="add-request.php">Add Request</a>
-</li>
+</li> -->
 <li class="nav-item">
-<a class="nav-link" href="manage-request.php">Manage Request</a>
+<a class="nav-link" href="manage-request.php">View Request</a>
 </li>
 </ul>
 </li>

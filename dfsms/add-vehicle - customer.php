@@ -5,28 +5,26 @@ include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
-// Add product Code
+// Add Station Code
 if(isset($_POST['submit']))
 {
-    
-    $Token_ID=$_POST['tokenId'];   
-    $GivenQuota=$_POST['givenQuota']; 
-    $EstiTime=$_POST['estiTime'];
-    $VehicleNo=$_POST['vehicleNo'];
-    $FuelType=$_POST['fuelType']; 
-    $Issued_Quantity=$_POST['issuedQuantity'];
-    (int)$RemainFuelQuota = $GivenQuota - $Issued_Quantity;
-    $query=mysqli_query($con,"insert into tbltoken(Token_ID,Given_Quota,Remain_Fuel_Quota,Vehicle_No,Fuel_type,Issued_Quantity,Esti_Time) values('$Token_ID','$GivenQuota','$RemainFuelQuota','$VehicleNo','$FuelType','$Issued_Quantity','$EstiTime')");
 //Getting Post Values
-
+$Vehi_No=$_POST['VehiNo'];   
+$Fuel_Quota=$_POST['fuelQuota'];   
+$Fuel_Type=$_POST['fuelType'];   
+$Vehi_Type=$_POST['vehType'];   
+$Customer_NIC=$_POST['customerNIC'];
+$query=mysqli_query($con,"insert into tblvehicle(Vehi_No,Vehi_Type,Fuel_Type,Fuel_Quota,Customer_NIC) values('$Vehi_No','$Vehi_Type','$Fuel_Type','$Fuel_Quota','$Customer_NIC')"); 
 if($query){
-echo "<script>alert('Token added successfully.');</script>";   
-echo "<script>window.location.href='add-token.php'</script>";
+echo "<script>alert('Vehicle added successfully.');</script>";   
+echo "<script>window.location.href='manage-vehicle.php'</script>";
 } else{
 echo "<script>alert('Something went wrong. Please try again.');</script>";   
-echo "<script>window.location.href='add-token.php'</script>";    
+echo "<script>window.location.href='add-vehicle.php'</script>";    
 }
 }
+//  station Add
+
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +32,7 @@ echo "<script>window.location.href='add-token.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Add Token</title>
+    <title>Add Vehicle</title>
     <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
@@ -46,18 +44,17 @@ echo "<script>window.location.href='add-token.php'</script>";
 
 <!-- Top Navbar -->
 <?php include_once('includes/navbar.php');
-include_once('includes/sidebar-station.php');
+include_once('includes/sidebar.php');
 ?>
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->
-
         <!-- Main Content -->
         <div class="hk-pg-wrapper">
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Token</a></li>
-<li class="breadcrumb-item active" aria-current="page">Add Token</li>
+<li class="breadcrumb-item"><a href="#">Vehicle</a></li>
+<li class="breadcrumb-item active" aria-current="page">Add</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -66,7 +63,7 @@ include_once('includes/sidebar-station.php');
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Add Token</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Add Vehicle</h4>
                 </div>
                 <!-- /Title -->
 
@@ -78,22 +75,29 @@ include_once('includes/sidebar-station.php');
 <div class="row">
 <div class="col-sm">
 <form class="needs-validation" method="post" novalidate>
-          
-<div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03">Token Id</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Token Id" name="tokenId" required>
-<div class="invalid-feedback">Please provide a valid Token Id.</div>
-</div>
-</div> 
-
+                                       
 <div class="form-row">
 <div class="col-md-6 mb-10">
 <label for="validationCustom03">Vehicle Number</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Vehicle Number" name="vehicleNo" required>
-<div class="invalid-feedback">Please provide a valid Vehicle Number.</div>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Vehicle Number" name="VehiNo" required>
+<div class="invalid-feedback">Please provide a valid Vehicle name.</div>
 </div>
-</div> 
+</div>
+
+<div class="form-row">
+<div class="col-md-6 mb-10">
+<label for="validationCustom03">Vehicle Type</label>
+<select class="form-control custom-select" name="vehType" required>
+    <option value="">Select Vehicle Type</option>
+	<option value="Car">Car</option>
+	<option value="Van">Van</option>
+	<option value="Heavy Vehicle">Heavy Vehicle</option>
+	<option value="Motor Bicycle">Motor Bicycle</option>
+	<option value="Three Wheeler">Three Wheeler</option>
+</select>
+<div class="invalid-feedback">Please select a Vehicle Type.</div>
+</div>
+</div>
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
@@ -113,26 +117,20 @@ while($row=mysqli_fetch_array($ret))
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Fuel Quota Limit</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Quota" name="givenQuota" required>
-<div class="invalid-feedback">Please provide a valid Fuel Quota.</div>
+<label for="validationCustom03">Customer NIC</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Customer NIC" name="customerNIC" required>
+<div class="invalid-feedback">Please provide a valid NIC.</div>
 </div>
 </div>
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Issued Fuel Quantity</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Issued Fuel Quantity" name="issuedQuantity" required>
-<div class="invalid-feedback">Please provide a valid Fuel Quantity.</div>
+<label for="validationCustom03">Fuel Quota</label>
+<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Quota" name="fuelQuota" required>
+<div class="invalid-feedback">Please provide a valid fuel quota.</div>
 </div>
 </div>
-<div class="form-row">
-<div class="col-md-6 mb-10">
-<label for="validationCustom03">Token Expire Date</label>
-<input class="form-control" type="date" name="estiTime" required  />
-<div class="invalid-feedback">Please provide a valid date.</div>
-</div>
-</div> 
+
 <button class="btn btn-primary" type="submit" name="submit">Submit</button>
 </form>
 </div>
@@ -142,17 +140,12 @@ while($row=mysqli_fetch_array($ret))
 </div>
 </div>
 </div>
-
-
             <!-- Footer -->
 <?php include_once('includes/footer.php');?>
             <!-- /Footer -->
-
         </div>
         <!-- /Main Content -->
-
     </div>
-
     <script src="vendors/jquery/dist/jquery.min.js"></script>
     <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -164,7 +157,6 @@ while($row=mysqli_fetch_array($ret))
     <script src="dist/js/toggle-data.js"></script>
     <script src="dist/js/init.js"></script>
     <script src="dist/js/validation-data.js"></script>
-
 </body>
 </html>
 <?php } ?>
