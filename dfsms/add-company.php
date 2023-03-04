@@ -6,25 +6,25 @@ if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
 // Add Station Code
-if(isset($_POST['submit']))
-{
-//Getting Post Values
-$cname=$_POST['companyname'];   
-$Location=$_POST['location'];   
-$Telephone=$_POST['telephone'];   
-$Email=$_POST['email'];   
-$Max_Stock=$_POST['maximumStock'];   
-$query=mysqli_query($con,"insert into tblcompany(CompanyName,Location,Telephone,Email,Max_Stock) values('$cname','$Location','$Telephone','$Email','$Max_Stock')"); 
-if($query){
-echo "<script>alert('Station added successfully.');</script>";   
-echo "<script>window.location.href='manage-companies.php'</script>";
-} else{
-echo "<script>alert('Something went wrong. Please try again.');</script>";   
-echo "<script>window.location.href='add-company.php'</script>";    
-}
-}
+    if(isset($_POST['submit']))
+    {
+    //Getting Post Values
+    $cname=$_POST['companyname'];   
+    $Location=$_POST['location'];   
+    $Telephone=$_POST['telephone'];   
+    $Email=$_POST['email'];   
+    $Max_Stock=$_POST['maximumStock'];   
+    $query=mysqli_query($con,"insert into tblcompany(CompanyName,Location,Telephone,Email,Max_Stock) values('$cname','$Location','$Telephone','$Email','$Max_Stock')"); 
+    if($query){
+    echo "<script>alert('Station added successfully.');</script>";   
+    echo "<script>window.location.href='manage-companies.php'</script>";
+    } else{
+    echo "<script>alert('Something went wrong. Please try again.');</script>";   
+    echo "<script>window.location.href='add-company.php'</script>";    
+    }
+    }
 //  station Add
-
+  }
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -156,4 +156,3 @@ include_once('includes/sidebar.php');
 
 </body>
 </html>
-<?php}  ?>
