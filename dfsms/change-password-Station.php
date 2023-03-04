@@ -5,22 +5,25 @@ include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
-// Add product Code
+// Change password code
 if(isset($_POST['submit']))
 {
-//Getting Post Values
- 
-$Fuel_Station=$_POST['FuelStation'];   
-$Fuel_Type=$_POST['FuelType'];
-$Fuel_Quantity=$_POST['FuelQuantity'];
-$query=mysqli_query($con,"insert into tblrequest(Fuel_Station,Fuel_Type,Fuel_Quantity) values('$Fuel_Station','$Fuel_Type','$Fuel_Quantity')"); 
-if($query){
-echo "<script>alert('Request added successfully.');</script>";   
-echo "<script>window.location.href='add-request.php'</script>";
-} else{
-echo "<script>alert('Something went wrong. Please try again.');</script>";   
-echo "<script>window.location.href='add-request.php'</script>";
+$adminid=$_SESSION['aid'];
+$cpassword=md5($_POST['currentpassword']);
+$newpassword=md5($_POST['newpassword']);
+$query=mysqli_query($con,"select ID from tbladmin where ID='$adminid' and   Password='$cpassword'");
+$row=mysqli_fetch_array($query);
+if($row>0){
+$ret=mysqli_query($con,"update tbladmin set Password='$newpassword' where ID='$adminid'");
+echo "<script>alert('Password changed successfully.');</script>";   
+echo "<script>window.location.href='change-password.php'</script>";
+} else {
+echo "<script>alert('Your current password is wrong');</script>";   
+echo "<script>window.location.href='change-password.php'</script>";
 }
+
+
+
 }
 
     ?>
@@ -30,15 +33,24 @@ echo "<script>window.location.href='add-request.php'</script>";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Add Request</title>
+    <title>Change Password</title>
     <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function checkpass()
+{
+if(document.changepassword.newpassword.value!=document.changepassword.confirmpassword.value)
+{
+alert('New Password and Confirm Password field does not match');
+document.changepassword.confirmpassword.focus();
+return false;
+}
+return true;
+}   
+</script>    
 </head>
-
 <body>
-    
-    
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-vertical-nav">
 
@@ -59,8 +71,8 @@ include_once('includes/sidebar-station.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Fuel Request</a></li>
-<li class="breadcrumb-item active" aria-current="page">Add Request</li>
+<li class="breadcrumb-item"><a href="#">Change Password</a></li>
+<li class="breadcrumb-item active" aria-current="page">Admin</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
@@ -69,7 +81,7 @@ include_once('includes/sidebar-station.php');
             <div class="container">
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Add Fuel Request</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="external-link"></i></span></span>Admin Change Password</h4>
                 </div>
                 <!-- /Title -->
 
@@ -80,54 +92,33 @@ include_once('includes/sidebar-station.php');
 
 <div class="row">
 <div class="col-sm">
-<form class="needs-validation" method="post" novalidate>
-
+<form class="needs-validation" method="post" name="changepassword" novalidate onsubmit="return checkpass();">
+                                       
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Fuel Station</label>
- <select class="form-control custom-select" name="FuelStation" required>
-<option value="">Select Station</option>
-<?php
-$ret=mysqli_query($con,"select CompanyName from tblcompany");
-while($row=mysqli_fetch_array($ret))
-{?>
-<option value="<?php echo $row['CompanyName'];?>"><?php echo $row['CompanyName'];?></option>
-<?php } ?>
-</select>
-<div class="invalid-feedback">Please select a station.</div>
+<label for="validationCustom03">Current Password</label>
+<input type="password" class="form-control" id="currentpassword" placeholder="Current Passsword" name="currentpassword" required>
+<div class="invalid-feedback">Please provide  current password.</div>
 </div>
 </div>
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Fuel Type</label>
- <select class="form-control custom-select" name="FuelType" required>
-<option value="">Select Fuel Type</option>
-<?php
-$ret=mysqli_query($con,"select CategoryName from tblcategory");
-while($row=mysqli_fetch_array($ret))
-{?>
-<option value="<?php echo $row['CategoryName'];?>"><?php echo $row['CategoryName'];?></option>
-<?php } ?>
-</select>
-<div class="invalid-feedback">Please select a Fuel Type.</div>
+<label for="validationCustom03">New Password</label>
+<input type="password" class="form-control" id="newpassword" placeholder="New Passsword" name="newpassword" required>
+<div class="invalid-feedback">Please provide  new password.</div>
 </div>
 </div>
 
 <div class="form-row">
 <div class="col-md-6 mb-10">
-<label for="validationCustom03">Fuel Quantity</label>
-<input type="text" class="form-control" id="validationCustom03" placeholder="Fuel Quantity" name="FuelQuantity" required>
-<div class="invalid-feedback">Please enter fuel quantity.</div>
+<label for="validationCustom03">Confirm Password</label>
+<input type="password" class="form-control" id="confirmpassword" placeholder="Confirm Passsword" name="confirmpassword" required>
+<div class="invalid-feedback">Please provide  confirm password.</div>
 </div>
 </div>
-
-
-  
-
-
-
-<button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                                 
+<button class="btn btn-primary" type="submit" name="submit">Change</button>
 </form>
 </div>
 </div>
