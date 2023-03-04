@@ -67,8 +67,8 @@ include_once('includes/sidebar.php');
                             <div class="invoice-from-wrap">
                                 <div class="row">
                                     <div class="col-md-7 mb-20">
-<h3 class="mb-35 font-weight-600">     DFSMS </h3>
-<h6 class="mb-5">Dairy Farm Shop Management System</h6>
+<h3 class="mb-35 font-weight-600">     FuelIn </h3>
+<h6 class="mb-5">Fuell Management System</h6>
 </div>
 
 <?php 

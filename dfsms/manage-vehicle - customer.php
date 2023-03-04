@@ -1,24 +1,25 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 include('includes/config.php');
 if (strlen($_SESSION['aid']==0)) {
   header('location:logout.php');
   } else{
-// Code for deletion   
+// Code for deletion       
 if(isset($_GET['del'])){    
 $cmpid=substr(base64_decode($_GET['del']),0,-5);
-$query=mysqli_query($con,"delete from tblcategory where id='$cmpid'");
-echo "<script>alert('Category record deleted.');</script>";   
-echo "<script>window.location.href='manage-categories.php'</script>";
+$query=mysqli_query($con,"delete from tblvehicle where Vehi_No='$cmpid'");
+echo "<script>alert('Vehicle record deleted.');</script>";   
+echo "<script>window.location.href='manage-vehicle.php'</script>";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>View Invoices</title>
+    <title>Manage Vehicles</title>
     <!-- Data Table CSS -->
     <link href="vendors/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="vendors/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -43,101 +44,62 @@ include_once('includes/sidebar.php');
             <!-- Breadcrumb -->
             <nav class="hk-breadcrumb" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-light bg-transparent">
-<li class="breadcrumb-item"><a href="#">Invoice</a></li>
-<li class="breadcrumb-item active" aria-current="page">View</li>
+<li class="breadcrumb-item"><a href="#">Vehicles</a></li>
+<li class="breadcrumb-item active" aria-current="page">Manage</li>
                 </ol>
             </nav>
             <!-- /Breadcrumb -->
-
             <!-- Container -->
             <div class="container">
-
                 <!-- Title -->
 <div class="hk-pg-header">
- <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="file"></i></span></span>View Invoice</h4>
+ <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Manage Vehicles</h4>
                 </div>
                 <!-- /Title -->
-
                 <!-- Row -->
                 <div class="row">
                     <div class="col-xl-12">
-
-
-  <section class="hk-sec-wrapper hk-invoice-wrap pa-35">
-                            <div class="invoice-from-wrap">
-                                <div class="row">
-                                    <div class="col-md-7 mb-20">
-<h3 class="mb-35 font-weight-600">    FuelIN </h3>
-<h6 class="mb-5">Fuel Management System</h6>
-
-</div>
-
-<?php 
-//Consumer Details
-$inid=substr(base64_decode($_GET['invid']),0,-5);
-$query=mysqli_query($con,"select distinct InvoiceNumber,CustomerName,CustomerContactNo,PaymentMode,InvoiceGenDate  from tblorders  where InvoiceNumber='$inid'");
-$cnt=1;
-while($row=mysqli_fetch_array($query))
-{    
-?>
-<div class="col-md-5 mb-20">
-<h4 class="mb-35 font-weight-600">Invoice / Receipt</h4>
-<span class="d-block">Date:<span class="pl-10 text-dark"><?php echo $row['InvoiceGenDate'];?></span></span>
-<span class="d-block">Invoice / Receipt #<span class="pl-10 text-dark"><?php echo $row['InvoiceNumber'];?></span></span>
-<span class="d-block">Customer #<span class="pl-10 text-dark"><?php echo $row['CustomerName'];?></span></span>
-<span class="d-block">Customer Mobile No #<span class="pl-10 text-dark"><?php echo $row['CustomerContactNo'];?></span></span>
-<span class="d-block">Payment Mode #<span class="pl-10 text-dark"><?php echo $row['PaymentMode'];?></span></span>
-</div>
-</div>
-</div>
-<?php } ?>
-<hr class="mt-0">
-                        
-                          
-                       
-<div class="row">
-<div class="col-sm">
-<div class="table-wrap">
-<table class="table mb-0" border="1">
-<thead>
-<tr>
-<th>#</th>
-<th >Order Number</th>
-<th>Fuel Type</th>
-<th>Station Name</th>
-<th width="5%">Ltrs</th>
-<th width="10%">Unit Price</th>
-<th width="10%">Price</th>
-
-</tr>
+                        <section class="hk-sec-wrapper">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="table-wrap">
+                                        <table id="datable_1" class="table table-hover w-100 display pb-30">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Vehicle Number</th>
+                                                    <th>Vehicle Type</th>
+                                                    <th>Fuel Type</th>
+                                                    <th>Fuel Quota</th>
+                                                    <th>Customer NIC</th>
+                                                    <th>Action</th>
+                                                    
+                                                </tr>
                                             </thead>
                                             <tbody>
-<?php 
-//Product Details
-$query=mysqli_query($con,"select tblproducts.CategoryName,tblproducts.ProductName,tblproducts.CompanyName,tblproducts.ProductPrice,tblorders.Quantity  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId where tblorders.InvoiceNumber='$inid'");
+<?php
+$rno=mt_rand(10000,99999);  
+$query=mysqli_query($con,"select * from tblvehicle");
 $cnt=1;
 while($row=mysqli_fetch_array($query))
 {    
 ?>                                                
 <tr>
 <td><?php echo $cnt;?></td>
-<td><?php echo $row['ProductName'];?></td>
-<td><?php echo $row['CategoryName'];?></td>
-<td><?php echo $row['CompanyName'];?></td>
-<td><?php echo $qty=$row['Quantity'];?></td>
-<td><?php echo $ppu=$row['ProductPrice'];?></td>
-<td><?php echo $subtotal=number_format($ppu*$qty);?></td>
+<td><?php echo $row['Vehi_No'];?></td>
+<td><?php echo $row['Vehi_Type'];?></td>
+<td><?php echo $row['Fuel_Type'];?></td>
+<td><?php echo $row['Fuel_Quota'];?></td>
+<td><?php echo $row['Customer_NIC'];?></td>
+<td>
+<a href="edit-vehicle.php?compid=<?php echo base64_encode($row['Vehi_No'].$rno);?>" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="icon-pencil"></i></a>
+<a href="manage-vehicle.php?del=<?php echo base64_encode($row['Vehi_No'].$rno);?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="icon-trash txt-danger"></i> </a>
+</td>
 </tr>
-
-<?php
-$grandtotal+=$subtotal; 
+<?php 
 $cnt++;
 } ?>
-  <tr>
-<!-- <th colspan="6" style="text-align:center; font-size:20px;">Total</th> 
-<th style="text-align:left; font-size:20px;"><?php echo number_format($grandtotal);?></th>    -->
-
-</tr>                                              
+                                                
                                             </tbody>
                                         </table>
                                     </div>
