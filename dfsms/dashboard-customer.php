@@ -21,8 +21,6 @@ if (strlen($_SESSION['aid']==0)) {
 </head>
 
 <body>
-    
-	
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-vertical-nav">
 
@@ -40,49 +38,29 @@ include_once('includes/sidebar-customer.php');
                     <div class="col-xl-12">
                         <div class="hk-row">
 
-<?php
-$query=mysqli_query($con,"select id from tblcategory");
-$listedcat=mysqli_num_rows($query);
-?>
 
-<div class="col-lg-3 col-md-6">
-    <div class="card card-sm small-box bg-primary">
-        <div class="card-body">
-            <div class="d-flex justify-content-between mb-5">
-                <div>
-                    <h3><span class="d-block font-19 text-white font-weight-700">Fuel Types</span></h3>
-                </div>
-                <div>
-                </div>
-            </div>
-            <div class="text-center">
-                <h3><span class="d-block font-45 display-3 text-white mb-7"><?php echo $listedcat;?></span></h3>
-                <small class="d-block text-white">Listed Fuel Types</small>
-            </div>
-        </div>
-        <div class="small-box-footer">
 
-        </div>
-    </div>
-</div>
-							
-<?php
-$sql=mysqli_query($con,"select id from tblproducts");
-$listedproduct=mysqli_num_rows($sql);
-?>
 <div class="col-lg-3 col-md-6">
 <div class="card card-sm small-box bg-warning">
 <div class="card-body">
 <div class="d-flex justify-content-between mb-5">
 <div>
-<span class="d-block font-19 text-dark font-weight-700">Customers</span>
+<span class="d-block font-19 text-dark font-weight-700">Fuel Types</span>
 </div>
 <div>
 </div>
 </div>
 <div class="text-center">
-<span class="d-block font-45 display-3 text-dark mb-7"><?php echo $listedproduct;?></span>
-<small class="d-block text-dark">Listed Customers</small>
+<?php
+$query=mysqli_query($con,"select CategoryName from tblcategory");
+$listedcat=mysqli_num_rows($query);
+while($row=mysqli_fetch_array($query))
+{
+
+?>
+    <span class="d-block font-18 display-3 text-dark mb-7 text-left"><?php echo $row['CategoryName']?></span>
+    <?php
+}?>
 </div>
 </div>
 </div>
@@ -96,14 +74,22 @@ $row=mysqli_fetch_array($query);
 <div class="card-body">
 <div class="d-flex justify-content-between mb-5">
 <div>
-<span class="d-block font-19 text-white font-weight-700">Total Litres</span>
+<span class="d-block font-19 text-white font-weight-700">Token</span>
 </div>
 <div>
 </div>
 </div>
 <div class="text-center">
-<span class="d-block font-45 display-3 text-white mb-7"><?php echo number_format($row['tt'],2);?></span>
-<small class="d-block text-white">Total litres till date</small>
+<?php
+$cmpid='252-5698';
+$query=mysqli_query($con,"select * from tblvehicle where Vehi_No='$cmpid'");
+while($result=mysqli_fetch_array($query))
+{
+
+?>
+    <span class="d-block font-18 display-3 text-dark mb-7 text-left"><?php echo $result['Vehi_No']?></span>
+    <?php
+}?>
 </div>
 </div>
 </div>
@@ -112,47 +98,8 @@ $row=mysqli_fetch_array($query);
 <?php
 $qury=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice) as tt  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId where date(tblorders.InvoiceGenDate)>=(DATE(NOW()) - INTERVAL 7 DAY)");
 $row=mysqli_fetch_array($qury);
-?>
-<div class="col-lg-3 col-md-6">
-<div class="card card-sm small-box bg-dark">
-<div class="card-body">
-<div class="d-flex justify-content-between mb-5">
-<div>
-<span class="d-block font-19 text-white font-weight-700">Last 7 Days Sales</span>
-</div>
-<div>
-</div>
-</div>
-<div class="text-center">
-<span class="d-block font-45 display-3 text-white mb-7"><?php echo number_format($row['tt'],2);?></span>
-<small class="d-block text-white ">Last 7 Days Total Sales</small>
-</div>
-</div>
-</div>
-</div>
 
-<?php
-$quryss=mysqli_query($con,"select sum(tblorders.Quantity*tblproducts.ProductPrice) as tt  from tblorders join tblproducts on tblproducts.id=tblorders.ProductId where date(tblorders.InvoiceGenDate)=CURDATE()");
-$rws=mysqli_fetch_array($quryss);
 ?>
-<div class="col-lg-3 col-md-6">
-<div class="card card-sm small-box">
-<div class="card-body">
-<div class="d-flex justify-content-between mb-5">
-<div>
-<span class="d-block font-19 text-dark font-weight-700">Today's Sales</span>
-</div>
-<div>
-</div>
-</div>
-<div class="text-center">
-<span class="d-block font-45 display-3 text-dark mb-7"><?php echo number_format($rws['tt'],2);?></span>
-<small class="d-block text-dark">Today's Total Sales</small>
-</div>
-</div>
-</div>
-</div>
-
 
 </div>
 					
