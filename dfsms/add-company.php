@@ -156,4 +156,4 @@ include_once('includes/sidebar.php');
 
 </body>
 </html>
-<?php } ?>
+<?php}  ?>

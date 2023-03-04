@@ -1,31 +1,27 @@
 <?php
-session_start();
-//error_reporting(0);
 
-if (strlen($_SESSION['aid']==0)) {
-  header('location:logout.php');
-  } else{
-// Add Station Code
-if(isset($_POST['submit']))
+$conn =mysqli_connect("localhost", "root", "", "dfsms");
+
+if(isset($_POST['userName']))
 {
-//Getting Post Values
-$AdminName=$_POST['adminName'];   
-$UserName=$_POST['userName'];   
-$NIC=$_POST['nic'];   
-$Email=$_POST['email'];   
-$Max_Stock=$_POST['maximumStock'];   
-$query=mysqli_query($con,"insert into tbladmin(AdminName,UserName,NIC,Email,Max_Stock) values('$cname','$Location','$Telephone','$Email','$Max_Stock')"); 
-if($query){
-echo "<script>alert('Station added successfully.');</script>";   
-echo "<script>window.location.href='manage-companies.php'</script>";
-} else{
-echo "<script>alert('Something went wrong. Please try again.');</script>";   
-echo "<script>window.location.href='add-company.php'</script>";    
+$AdminName = $conn->real_escape_string('Customer');
+$UserName = $conn->real_escape_string($_POST['userName']);
+$Email = $conn->real_escape_string($_POST['email']);
+$MobileNumber = $conn->real_escape_string($_POST['mobile']);
+$NIC = $conn->real_escape_string($_POST['nic']);
+$Password = $conn->real_escape_string($_POST['password']);
+$hashed_password = password_hash($Password, PASSWORD_DEFAULT);
+
+$query = "INSERT into tbladmin(AdminName,UserName,Email,MobileNumber,NIC,Password) VALUES('" . $AdminName . "','" . $UserName . "','" . $Email . "','" . $MobileNumber . "','" . $NIC ."','" . $hashed_password ."')";
+$success = $conn->query($query);
+
+if (!$success){
+	die("Couldnt enter data: ".$conn->error);
 }
 }
-  }
-    ?>
-    
+$conn->close();
+
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -96,7 +92,7 @@ echo "<script>window.location.href='add-company.php'</script>";
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-
+    
     <!-- Register Section Begin -->
     <section class="register-section classes-page spad">
         <div class="container">
@@ -107,27 +103,27 @@ echo "<script>window.location.href='add-company.php'</script>";
                             <div class="section-title">
                                 <h2>Register Now</h2>
                             </div>
-                            <form action="#" class="register-form">
+                            <form class="register-form" method="post" novalidate>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label for="name">User Name*</label>
-                                        <input type="text" id="name">
+                                        <input type="text" class="form-control" id="validationCustom03" placeholder="User Name" id="userName" name="userName" required>
                                     </div>
                                     <div class="col-lg-6">
                                         <label for="email">Your email address*</label>
-                                        <input type="text" id="email">
+                                        <input type="text" class="form-control" id="validationCustom03" placeholder="User Email" name="email" required>
                                     </div>
                                     <div class="col-lg-6">
                                         <label for="last-name">NIC*</label>
-                                        <input type="text" id="nic">
+                                        <input type="text" class="form-control" id="validationCustom03" placeholder="User NIC" name="nic" required>
                                     </div>
                                     <div class="col-lg-6">
                                         <label for="mobile">Mobile No*</label>
-                                        <input type="text" id="mobile">
+                                        <input type="text" class="form-control" id="validationCustom03" placeholder="Mobile Number" name="mobile" required>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label for="mobile">Password*</label>
-                                        <input type="text" id="mobile">
+                                        <label for="password">Password*</label>
+                                        <input type="text" class="form-control" id="validationCustom03" placeholder="Password" name="password" required>
                                     </div>
                                 </div>
                                 <button type="submit" class="register-btn">Get Started</button>
@@ -234,213 +230,7 @@ echo "<script>window.location.href='add-company.php'</script>";
     <!-- Classes Section End -->
 
     <!-- Classes Timetable Section Begin -->
-    <section class="classes-timetable spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Class Timetable</h2>
-                    </div>
-                    <div class="nav-controls">
-                        <ul>
-                            <li class="active" data-tsfilter="all">All Class</li>
-                            <li data-tsfilter="gym">Gym</li>
-                            <li data-tsfilter="crossfit">Crossfit</li>
-                            <li data-tsfilter="cardio">Cardio</li>
-                            <li data-tsfilter="body">Body</li>
-                            <li data-tsfilter="yoga">Yoga</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="schedule-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Monday</th>
-                                    <th>Tuesday</th>
-                                    <th>Wednesday</th>
-                                    <th>Thursday</th>
-                                    <th>Friday</th>
-                                    <th>Saturday</th>
-                                    <th>Sunday</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="workout-time">10.00</td>
-                                    <td class="hover-bg ts-item" data-tsmeta="gym">
-                                        <h6>Gym</h6>
-                                        <span>10.00 - 11.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="yoga">
-                                        <h6>Yoga</h6>
-                                        <span>10.00 - 12.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="body">
-                                        <h6>Body</h6>
-                                        <span>10.00 - 12.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="cardio">
-                                        <h6>Cardio</h6>
-                                        <span>10.00 - 11.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="workout-time">14.00</td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item">
-                                        <h6>Running</h6>
-                                        <span>14.00 - 16.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item">
-                                        <h6>Box</h6>
-                                        <span>14.00 - 15.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="gym">
-                                        <h6>Gym</h6>
-                                        <span>14.00 - 16.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class="workout-time">16.00</td>
-                                    <td class="hover-bg ts-item" data-tsmeta="cardio">
-                                        <h6>Cardio</h6>
-                                        <span>16.00 - 18.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="gym">
-                                        <h6>Gym</h6>
-                                        <span>16.00 - 19.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="yoga">
-                                        <h6>Yoga</h6>
-                                        <span>16.00 - 18.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="gym">
-                                        <h6>Gym</h6>
-                                        <span>16.00 - 20.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="workout-time">18.00</td>
-                                    <td class="hover-bg ts-item">
-                                        <h6>Box</h6>
-                                        <span>18.00 - 22.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td class="hover-bg ts-item" data-tsmeta="body">
-                                        <h6>Body</h6>
-                                        <span>18.00 - 20.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="crossfit">
-                                        <h6>Crossfit</h6>
-                                        <span>18.00 - 21.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="cardio">
-                                        <h6>Cardio</h6>
-                                        <span>18.00 - 22.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class="workout-time">20.00</td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="gym">
-                                        <h6>Gym</h6>
-                                        <span>20.00 - 12.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td class="hover-bg ts-item" data-tsmeta="body">
-                                        <h6>Body</h6>
-                                        <span>20.00 - 21.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="cardio">
-                                        <h6>Cardio</h6>
-                                        <span>20.00 - 22.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td class="hover-bg ts-item" data-tsmeta="crossfit">
-                                        <h6>Crossfit</h6>
-                                        <span>20.00 - 21.00</span>
-                                        <div class="trainer-name">
-                                            John Smith
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!-- Trainer Table Schedule Section End -->
 
     <!-- Footer Banner Section Begin -->
