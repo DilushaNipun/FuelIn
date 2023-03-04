@@ -18,6 +18,10 @@ $success = $conn->query($query);
 if (!$success){
 	die("Couldnt enter data: ".$conn->error);
 }
+else{
+    echo "<script>alert('User added successfully.');</script>";   
+echo "<script>window.location.href='signup.php'</script>";
+}
 }
 $conn->close();
 
