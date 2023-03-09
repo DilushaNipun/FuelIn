@@ -16,7 +16,7 @@ $Payment_Amount=$_POST['paymentAmount'];
 $query=mysqli_query($con,"insert into tblpayments(Customer_NIC,Customer_Email,Token_ID,Payment_Amount) values('$Customer_NIC','$Customer_Email','$Token_ID','$Payment_Amount')"); 
 if($query){
 echo "<script>alert('Payment successfull.');</script>";   
-echo "<script>window.location.href='manage-payment.php'</script>";
+echo "<script>window.location.href='add-payment-customer.php'</script>";
 } else{
 echo "<script>alert('Something went wrong. Please try again.');</script>";   
 echo "<script>window.location.href='add-payment.php'</script>";    

@@ -60,7 +60,7 @@
 <a class="nav-link" href="add-request.php">Add Request</a>
 </li> -->
 <li class="nav-item">
-<a class="nav-link" href="manage-request.php">View Request</a>
+<a class="nav-link" href="manage-request-company.php">View Request</a>
 </li>
 </ul>
 </li>

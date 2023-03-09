@@ -18,7 +18,7 @@ if(isset($_POST['login']))
         header('location:dashboard-station.php');
      }
      elseif($ret['AdminName'] == "Customer"){
-        header('location:dashboard-customer.php');
+        header('location:dashboard-customer.php?aid');
      }
 
     }

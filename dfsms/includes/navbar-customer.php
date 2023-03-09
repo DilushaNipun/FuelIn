@@ -16,11 +16,11 @@
 <?php 
 //Getting admin name
 $adminid=$_SESSION['aid'];
-$query=mysqli_query($con,"select AdminName from tbladmin where id='$adminid'");
+$query=mysqli_query($con,"select AdminName,UserName from tbladmin where id='$adminid'");
 $row=mysqli_fetch_array($query);
 ?>                            
                             <div class="media-body">
-                                <span><?php echo $row['AdminName'];?><i class="zmdi zmdi-chevron-down"></i></span>
+                                <span><?php echo $row['UserName'];?><i class="zmdi zmdi-chevron-down"></i></span>
                             </div>
                         </div>
                     </a>

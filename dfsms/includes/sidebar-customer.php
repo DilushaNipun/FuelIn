@@ -58,6 +58,9 @@
 <li class="nav-item">
 <a class="nav-link" href="add-payment-customer.php">Make Payment</a>
 </li>
+<li class="nav-item">
+<a class="nav-link" href="manage-payment-customer.php">View Payment</a>
+</li>
 </ul>
 </li>
 </ul>
