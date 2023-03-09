@@ -81,6 +81,11 @@ $row=mysqli_fetch_array($query);
 </div>
 <div class="text-center">
 <?php
+$adminid=$_SESSION['aid'];
+
+
+$query1=mysqli_query($con,"select UserName,NIC from tbladmin where id='$adminid'");
+$row=mysqli_fetch_array($query1);
 $cmpid='252-5698';
 $query=mysqli_query($con,"select * from tblvehicle where Vehi_No='$cmpid'");
 while($result=mysqli_fetch_array($query))
