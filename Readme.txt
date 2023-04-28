@@ -1,4 +1,4 @@
-How to run the Dairy Farm Shop Management System Project (DFSMS)
+How to run the Project (DFSMS)
 1. Download the zip file
 
 2. Extract the file and copy dfsms folder
